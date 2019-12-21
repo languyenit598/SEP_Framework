@@ -1,0 +1,10 @@
+C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csprojAssemblyReference.cache
+C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Properties.Resources.resources
+C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csproj.GenerateResource.cache
+C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csproj.CoreCompileInputs.cache
+C:\git\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.exe.config
+C:\git\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.exe
+C:\git\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.pdb
+C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.exe
+C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.pdb
+C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.BaseForm.resources
