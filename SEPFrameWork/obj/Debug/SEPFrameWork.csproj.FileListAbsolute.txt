@@ -1,0 +1,9 @@
+D:\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.exe.config
+D:\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.exe
+D:\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.pdb
+D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csprojAssemblyReference.cache
+D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Properties.Resources.resources
+D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csproj.GenerateResource.cache
+D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.exe
+D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.pdb
+D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Create_Form.resources
