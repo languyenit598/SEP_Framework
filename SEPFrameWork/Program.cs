@@ -16,7 +16,12 @@ namespace SEPFrameWork
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            System.Collections.ArrayList abc = new System.Collections.ArrayList();
+            abc.Add("MSSV");
+            abc.Add("Họ tên");
+            abc.Add("Điểm");
+            Application.Run(new Create_Form(abc));
         }
     }
 }
