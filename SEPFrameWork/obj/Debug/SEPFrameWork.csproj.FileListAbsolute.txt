@@ -2,8 +2,8 @@ D:\OOAD\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.exe.config
 D:\OOAD\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.exe
 D:\OOAD\SEP_Framework\SEPFrameWork\bin\Debug\SEPFrameWork.pdb
 D:\OOAD\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csprojAssemblyReference.cache
+D:\OOAD\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.BaseForm.resources
 D:\OOAD\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Properties.Resources.resources
 D:\OOAD\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csproj.GenerateResource.cache
 D:\OOAD\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.exe
 D:\OOAD\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.pdb
-D:\OOAD\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.BaseForm.resources

@@ -18,12 +18,11 @@ namespace SEPFrameWork.Databases
         //thêm mới 1 record vào 1 bảng trong database
         bool CreateData(String tableName, Object[] data);
 
-
         //cập nhật lại 1 record trong 1 bảng của database   
-        bool UpdateData(String tableName, Object[] data);
+        bool UpdateData(String tableName, Object[] data, Object[] newData);
 
         //xóa 1 record trong 1 bảng của databse
-        bool DeleteData(String tableNme, Object[] data);
+        bool DeleteData(String tableName, Object[] Data);
 
         //trả về tên của Collumn của bảng dữ liệu cùng với kiểu dữ liệu của nó
         List<String> GetNameFieldsOfTable(String tableName);

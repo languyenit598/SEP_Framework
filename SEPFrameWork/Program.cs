@@ -28,8 +28,11 @@ namespace SEPFrameWork
             //{
             //    Console.WriteLine(i);
             //}
-            object[] data = { 70, "ANDROID DEV", "D70", "HCM CITY" };
-            bool a = databaseConnection.CreateData("DEPARTMENT", data);
+            object[] oldData = { 80, "BE DEV", "D80", "HCM CITY" };
+            object[] newData = { 80, "BE DEV", "D80", "HANOI" };
+            //bool a = databaseConnection.CreateData("DEPARTMENT", oldData);
+            //bool a = databaseConnection.UpdateData("DEPARTMENT", oldData, newData);
+            bool a = databaseConnection.DeleteData("DEPARTMENT", newData);
             Console.WriteLine(a);
             List<Dictionary<String, String>> test4 = databaseConnection.ReadData("DEPARTMENT");
             foreach(Dictionary<String, String> i in test4)

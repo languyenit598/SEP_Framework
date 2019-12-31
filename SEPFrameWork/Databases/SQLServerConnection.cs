@@ -59,10 +59,10 @@ namespace SEPFrameWork.Databases
             List<string> listFields = this.GetNameFieldsOfTable(tableName);
 
             // sau tên table sẽ là các trường dữ liệu để chèn vào
-            StringBuilder fieldsString = new StringBuilder(); 
-            
+            StringBuilder fieldsString = new StringBuilder();
+
             // chuỗi này để lưu index các param (ví dụ param1) dùng để truyền dữ liệu từ Object data
-            StringBuilder indexParams = new StringBuilder(); 
+            StringBuilder indexParams = new StringBuilder();
 
             if (listFields.Count < 1)
             {
@@ -81,7 +81,7 @@ namespace SEPFrameWork.Databases
                 }
             }
             fieldsString.Append(")");
-            indexParams.Append(")");         
+            indexParams.Append(")");
 
 
             try
@@ -95,7 +95,7 @@ namespace SEPFrameWork.Databases
                 conn.Open();
                 cmd = conn.CreateCommand();
 
-
+                //param1, param2, param3
 
                 sqlQuery = "INSERT INTO " + tableName + fieldsString + " VALUES " + indexParams;
                 cmd.CommandText = sqlQuery;
@@ -168,7 +168,7 @@ namespace SEPFrameWork.Databases
             }
 
         }
-        public bool UpdateData(string tableName, object[] data)
+        public bool UpdateData(string tableName, object[] oldData, object[] newData)
         {
             SqlConnection conn = null;
             SqlCommand cmd;
@@ -176,38 +176,90 @@ namespace SEPFrameWork.Databases
             String sqlQuery;
             //tạo list các fields để upfate dữ liệu
             List<string> listFields = this.GetNameFieldsOfTable(tableName);
-            
+
             // chuỗi để lưu index 
-            StringBuilder paramsUpdate = new StringBuilder();
+            StringBuilder paramsUpdateSET = new StringBuilder();
+            StringBuilder paramsUpdateWHERE = new StringBuilder();
+
 
             if (listFields.Count < 1)
-            {           
+            {
                 return false;
             }
-           
+
             for (int i = 0; i < listFields.Count; i++)
             {
-                paramsUpdate.Append(listFields[i]).Append(" = ").Append("@param").Append(i);
+                paramsUpdateSET.Append(listFields[i]).Append(" = ").Append("@paramset").Append(i);
+                paramsUpdateWHERE.Append(listFields[i]).Append(" = ").Append("@paramwhere").Append(i);
                 if (i < listFields.Count - 1)
                 {
-                    paramsUpdate.Append(", ");
+                    paramsUpdateSET.Append(", ");
+                    paramsUpdateWHERE.Append(" AND ");
                 }
             }
 
-
             try
             {
-                if(listFields.Count!= data.Length)
+                if (listFields.Count != newData.Length)
                 {
                     return false;
                 }
                 conn = this.GetDBConnection();
                 conn.Open();
                 cmd = conn.CreateCommand();
+                sqlQuery = "UPDATE " + tableName + " SET " + paramsUpdateSET + " WHERE " + paramsUpdateWHERE;
+                cmd.CommandText = sqlQuery;
+
+                for (int i = 0; i < listFields.Count; i++)
+                {
+                    cmd.Parameters.AddWithValue("@paramset" + i, newData[i]);
+                    cmd.Parameters.AddWithValue("@paramwhere" + i, oldData[i]);
+                }
+               
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool DeleteData(string tableName, object[] data)
+        {
+            SqlConnection conn = null;
+            SqlCommand cmd;
+
+            String sqlQuery;
+
+            //tạo list các fields để upfate dữ liệu
+            List<string> listFields = this.GetNameFieldsOfTable(tableName);
 
 
+            StringBuilder paramDelete = new StringBuilder();
 
-                sqlQuery = "UPDATE " + tableName + " SET " + paramsUpdate;
+            for (int i = 0; i < listFields.Count; i++)
+            {
+                paramDelete.Append(listFields[i]).Append(" = ").Append("@param").Append(i);
+                if (i < listFields.Count - 1)
+                {
+                    paramDelete.Append(" AND ");
+                }
+            }
+            try
+            {
+                conn = this.GetDBConnection();
+                conn.Open();
+                cmd = conn.CreateCommand();
+
+                sqlQuery = "DELETE FROM " + tableName +" WHERE "+ paramDelete;
                 cmd.CommandText = sqlQuery;
 
                 for (int i = 0; i < data.Length; i++)
@@ -229,11 +281,6 @@ namespace SEPFrameWork.Databases
                     conn.Close();
                 }
             }
-        }
-
-        public bool DeleteData(string tableNme, object[] data)
-        {
-            throw new NotImplementedException();
         }
 
         public List<String> GetNameTables()
@@ -433,12 +480,12 @@ namespace SEPFrameWork.Databases
             {
                 conn = this.GetDBConnection();
                 conn.Open();
-                cmd = conn.CreateCommand();         
+                cmd = conn.CreateCommand();
 
                 sqlQuery = "SELECT Col.Column_Name from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '" + tableName + "'";
                 cmd.CommandText = sqlQuery;
                 using (reader = cmd.ExecuteReader())
-                {                  
+                {
                     if (reader.HasRows)
                     {
                         while (reader.Read())
