@@ -20,18 +20,27 @@ namespace SEPFrameWork
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             Application.Run(new LoginForm());
-            IConnector databaseConnection = new MySQLConnector();
+
+
+
+            //IConnector databaseConnection = new MySQLConnector();
+
+
+
             //List<String> test = databaseConnection.GetNameTables();
             //List<String> test2 = databaseConnection.getColumnsName();
-
             //List<String> test3 = databaseConnection.GetNameFieldsOfTable("DEPARTMENT");
             //Type type = databaseConnection.GetTypeofFields("DEPARTMENT", "DEPT_ID");
             //foreach (String i in test3)
             //{
             //    Console.WriteLine(i);
             //}
-            object[] oldData = { 80, "BE DEV", "D80", "HCM CITY" };
-            object[] newData = { 80, "BE DEV", "D80", "HANOI" };
+
+
+            //object[] oldData = { 80, "BE DEV", "D80", "HCM CITY" };
+            //object[] newData = { 80, "BE DEV", "D80", "HANOI" };
+
+
             //bool a = databaseConnection.CreateData("DEPARTMENT", oldData);
             //bool a = databaseConnection.UpdateData("DEPARTMENT", oldData, newData);
 
@@ -41,12 +50,12 @@ namespace SEPFrameWork
             //{
             //    Console.WriteLine(i);
             //}
-            var a = databaseConnection.GetFieldsAutoIncrement("salary_grade");
+            //var a = databaseConnection.GetFieldsAutoIncrement("salary_grade");
             //bool a = databaseConnection.DeleteData("department",newData);
             //Console.WriteLine(a);
             //List<String> test5 = databaseConnection.GetNameFieldsNotNullOfTable("department");
             //string test6 = databaseConnection.GetPrimaryKeyOfTable("DEPARTMENT");
-            Console.WriteLine("A");
+            //Console.WriteLine("A");
         }
     }
 }

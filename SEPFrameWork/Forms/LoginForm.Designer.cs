@@ -37,7 +37,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.cbTypeDatabase = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblChooseTable = new System.Windows.Forms.Label();
             this.cbDatabase = new System.Windows.Forms.ComboBox();
             this.cbTable = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -78,7 +78,7 @@
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(203, 138);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(260, 22);
+            this.txtUsername.Size = new System.Drawing.Size(282, 22);
             this.txtUsername.TabIndex = 3;
             this.txtUsername.Text = "sa";
             // 
@@ -87,7 +87,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(203, 177);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(260, 22);
+            this.txtPassword.Size = new System.Drawing.Size(282, 22);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -96,9 +96,9 @@
             this.btnLogin.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLogin.Location = new System.Drawing.Point(203, 222);
+            this.btnLogin.Location = new System.Drawing.Point(203, 217);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(120, 45);
+            this.btnLogin.Size = new System.Drawing.Size(130, 45);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -109,9 +109,9 @@
             this.btnExit.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnExit.Location = new System.Drawing.Point(343, 222);
+            this.btnExit.Location = new System.Drawing.Point(355, 217);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(120, 45);
+            this.btnExit.Size = new System.Drawing.Size(130, 45);
             this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -137,15 +137,15 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Chọn CSDL";
             // 
-            // label5
+            // lblChooseTable
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(54, 105);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 16);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Chọn bảng";
+            this.lblChooseTable.AutoSize = true;
+            this.lblChooseTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChooseTable.Location = new System.Drawing.Point(54, 105);
+            this.lblChooseTable.Name = "lblChooseTable";
+            this.lblChooseTable.Size = new System.Drawing.Size(82, 16);
+            this.lblChooseTable.TabIndex = 9;
+            this.lblChooseTable.Text = "Chọn bảng";
             // 
             // cbDatabase
             // 
@@ -153,7 +153,7 @@
             this.cbDatabase.FormattingEnabled = true;
             this.cbDatabase.Location = new System.Drawing.Point(337, 69);
             this.cbDatabase.Name = "cbDatabase";
-            this.cbDatabase.Size = new System.Drawing.Size(126, 24);
+            this.cbDatabase.Size = new System.Drawing.Size(148, 24);
             this.cbDatabase.TabIndex = 10;
             this.cbDatabase.SelectedIndexChanged += new System.EventHandler(this.cbDatabase_SelectionIndexChanged);
             // 
@@ -163,7 +163,7 @@
             this.cbTable.FormattingEnabled = true;
             this.cbTable.Location = new System.Drawing.Point(203, 102);
             this.cbTable.Name = "cbTable";
-            this.cbTable.Size = new System.Drawing.Size(260, 24);
+            this.cbTable.Size = new System.Drawing.Size(282, 24);
             this.cbTable.TabIndex = 11;
             this.cbTable.SelectedIndexChanged += new System.EventHandler(this.cbTable_SelectionIndexChanged);
             // 
@@ -174,7 +174,7 @@
             this.ClientSize = new System.Drawing.Size(541, 317);
             this.Controls.Add(this.cbTable);
             this.Controls.Add(this.cbDatabase);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblChooseTable);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbTypeDatabase);
             this.Controls.Add(this.btnExit);
@@ -203,7 +203,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.ComboBox cbTypeDatabase;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblChooseTable;
         private System.Windows.Forms.ComboBox cbDatabase;
         private System.Windows.Forms.ComboBox cbTable;
     }
