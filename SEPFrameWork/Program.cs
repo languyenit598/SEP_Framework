@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SEPFrameWork.Forms;
 
 namespace SEPFrameWork
 {
@@ -18,6 +19,7 @@ namespace SEPFrameWork
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
+            Application.Run(new LoginForm());
             IConnector databaseConnection = new MySQLConnector();
             //List<String> test = databaseConnection.GetNameTables();
             //List<String> test2 = databaseConnection.getColumnsName();
