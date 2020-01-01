@@ -18,7 +18,7 @@ namespace SEPFrameWork
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            IConnector databaseConnection = new SQLServerConnection("DataTest", @"DESKTOP-2BKS2GH\SQLEXPRESS");
+            IConnector databaseConnection = new MySQLConnector();
             //List<String> test = databaseConnection.GetNameTables();
             //List<String> test2 = databaseConnection.getColumnsName();
 
@@ -32,16 +32,18 @@ namespace SEPFrameWork
             object[] newData = { 80, "BE DEV", "D80", "HANOI" };
             //bool a = databaseConnection.CreateData("DEPARTMENT", oldData);
             //bool a = databaseConnection.UpdateData("DEPARTMENT", oldData, newData);
-            bool a = databaseConnection.DeleteData("DEPARTMENT", newData);
-            Console.WriteLine(a);
-            List<Dictionary<String, String>> test4 = databaseConnection.ReadData("DEPARTMENT");
-            foreach(Dictionary<String, String> i in test4)
-            {
-                String b = i.Keys.ToString();
-            }
 
-            List<String> test5 = databaseConnection.GetNameFieldsNotNullOfTable("DEPARTMENT");
-            string test6 = databaseConnection.GetPrimaryKeyOfTable("DEPARTMENT");
+          
+            //List<Dictionary<String, String>> test4 = databaseConnection.ReadData("DEPARTMENT");
+            //foreach (Dictionary<String, String> i in test4)
+            //{
+            //    Console.WriteLine(i);
+            //}
+            var a = databaseConnection.GetFieldsAutoIncrement("salary_grade");
+            //bool a = databaseConnection.DeleteData("department",newData);
+            //Console.WriteLine(a);
+            //List<String> test5 = databaseConnection.GetNameFieldsNotNullOfTable("department");
+            //string test6 = databaseConnection.GetPrimaryKeyOfTable("DEPARTMENT");
             Console.WriteLine("A");
         }
     }

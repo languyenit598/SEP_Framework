@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -14,16 +15,16 @@ namespace SEPFrameWork.Databases
     class MySQLConnector : IConnector
     {
 
-        private String database;
-        private string host="localhost";
+        private String database = "simplehr";
+        private String host = "localhost";
         private int port = 3306;
-        private string username;
-        private string password;
+        private String username = "quochoi142";
+        private String password = "quochoi142";
 
 
         public MySQLConnector()
         {
-           //get DBConfig
+            //get DBConfig
         }
 
         private MySqlConnection GetDBConnection()
@@ -34,7 +35,7 @@ namespace SEPFrameWork.Databases
 
             MySqlConnection conn = new MySqlConnection(connString);
 
-           
+
 
             return conn;
         }
@@ -43,7 +44,7 @@ namespace SEPFrameWork.Databases
         {
             MySqlConnection conn = null;
             MySqlCommand cmd;
-            
+
 
             String sqlQuery;
             //tạo list các fields để insert dữ liệu
@@ -460,20 +461,22 @@ namespace SEPFrameWork.Databases
             }
         }
 
-        public string GetPrimaryKeyOfTable(string tableName)
+        public List<String> GetPrimaryKeyOfTable(String tableName)
         {
             String result = null;
             MySqlConnection conn = null;
             MySqlCommand cmd;
             DbDataReader reader;
             String sqlQuery;
+            List<string> keys = new List<string>();
             try
             {
                 conn = this.GetDBConnection();
                 conn.Open();
                 cmd = conn.CreateCommand();
 
-                sqlQuery = "SELECT Col.Column_Name from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '" + tableName + "'";
+                sqlQuery = "SHOW KEYS FROM " + tableName + " WHERE Key_name = 'PRIMARY'";
+                //sqlQuery = "SELECT Col.Column_Name from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '" + tableName + "'";
                 cmd.CommandText = sqlQuery;
                 using (reader = cmd.ExecuteReader())
                 {
@@ -481,11 +484,12 @@ namespace SEPFrameWork.Databases
                     {
                         while (reader.Read())
                         {
-                            result = reader.GetString(0);
+                            result = reader.GetString(4);
+                            keys.Add(result);
                         }
                     }
                 }
-                return result;
+                return keys;
             }
             catch (Exception ex)
             {
@@ -498,6 +502,41 @@ namespace SEPFrameWork.Databases
                     conn.Close();
                 }
             }
+        }
+
+        public List<String> GetFieldsAutoIncrement(String tableName)
+        {
+            MySqlConnection conn = null;
+
+            try
+            {
+                List<String> keys = new List<string>();
+                MySqlCommand cmd = new MySqlCommand();
+                conn = GetDBConnection();
+                conn.Open();
+                cmd.Connection = conn;
+                String sql = "show columns from " + tableName + " where extra like '%auto_increment%'";
+                cmd.CommandText = sql;
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            keys.Add(reader.GetString(0));
+                        }
+
+                    }
+                }
+                return keys;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                conn.Close();
+                return null;
+            }
+
         }
 
     }

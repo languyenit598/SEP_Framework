@@ -34,6 +34,9 @@ namespace SEPFrameWork.Databases
         List<String> GetNameFieldsNotNullOfTable(String tableName);
 
         //trả về tên của Fields là khóa chính của bảng
-        String GetPrimaryKeyOfTable(String tableName);
+        List<String> GetPrimaryKeyOfTable(String tableName);
+
+        //Get a list of fields are auto increment
+        List<String> GetFieldsAutoIncrement(String tableName);
     }
 }

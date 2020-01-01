@@ -469,13 +469,14 @@ namespace SEPFrameWork.Databases
             }
         }
 
-        public string GetPrimaryKeyOfTable(string tableName)
+        public List<string> GetPrimaryKeyOfTable(string tableName)
         {
             String result = null;
             SqlConnection conn = null;
             SqlCommand cmd;
             DbDataReader reader;
             String sqlQuery;
+            List<string> keys = new List<string>();
             try
             {
                 conn = this.GetDBConnection();
@@ -491,10 +492,11 @@ namespace SEPFrameWork.Databases
                         while (reader.Read())
                         {
                             result = reader.GetString(0);
+                            keys.Add(result);
                         }
                     }
                 }
-                return result;
+                return keys;
             }
             catch (Exception ex)
             {
@@ -507,6 +509,11 @@ namespace SEPFrameWork.Databases
                     conn.Close();
                 }
             }
+        }
+
+        public List<string> GetFieldsAutoIncrement(string tableName)
+        {
+            throw new NotImplementedException();
         }
     }
 }
