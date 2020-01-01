@@ -16,5 +16,20 @@ namespace SEPFrameWork.Forms
         {
             InitializeComponent();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Thông báo", "Add clicked!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Thông báo", "Update clicked!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Thông báo", "Delete clicked!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
