@@ -513,7 +513,87 @@ namespace SEPFrameWork.Databases
 
         public List<string> GetFieldsAutoIncrement(string tableName)
         {
-            throw new NotImplementedException();
+            String result = null;
+            SqlConnection conn = null;
+            SqlCommand cmd;
+            DbDataReader reader;
+            String sqlQuery;
+            List<string> keys = new List<string>();
+            try
+            {
+                conn = this.GetDBConnection();
+                conn.Open();
+                cmd = conn.CreateCommand();
+
+                sqlQuery = "SELECT name FROM sys.identity_columns " + "WHERE object_id = OBJECT_ID(@TableName)";
+                cmd.CommandText = sqlQuery;
+                cmd.Parameters.AddWithValue("@tableName", tableName);
+                using (reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result = reader.GetString(0);
+                            keys.Add(result);
+                        }
+                    }
+                }
+                return keys;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public List<string> GetNameDatabase()
+        {
+            String result = null;
+            SqlConnection conn = null;
+            SqlCommand cmd;
+            DbDataReader reader;
+            String sqlQuery;
+            List<string> keys = new List<string>();
+            try
+            {
+                conn = this.GetDBConnection();
+                conn.Open();
+                cmd = conn.CreateCommand();
+
+                sqlQuery = "SELECT name from sys.databases";
+                cmd.CommandText = sqlQuery;
+                using (reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result = reader.GetString(0);
+                            keys.Add(result);
+                        }
+                    }
+                }
+                return keys;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
         }
     }
 }
