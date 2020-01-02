@@ -528,16 +528,58 @@ namespace SEPFrameWork.Databases
 
                     }
                 }
+                conn.Close();
                 return keys;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.StackTrace);
-                conn.Close();
+                if (conn != null)
+                    conn.Close();
                 return null;
             }
 
         }
+        public List<String> GetNameDatabase()
+        {
+            String myConnectionString = "SERVER=localhost;UID='quochoi142';" + "PASSWORD='quochoi142';";
+            List<String> Dbs = new List<string>();
+            MySqlConnection conn = null;
+            try
+            {
 
+                conn = new MySqlConnection(myConnectionString);
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SHOW DATABASES;";
+                MySqlDataReader Reader;
+                conn.Open();
+                Reader = cmd.ExecuteReader();
+                while (Reader.Read())
+                {
+                    string row = "";
+                    for (int i = 0; i < Reader.FieldCount; i++)
+                        row += Reader.GetValue(i).ToString();
+                    Dbs.Add(row);
+
+
+                }
+                conn.Close();
+                return Dbs;
+            }
+            catch (Exception ex)
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+                Console.WriteLine(ex.Message);
+                return null;
+
+            }
+
+
+
+
+        }
     }
 }
