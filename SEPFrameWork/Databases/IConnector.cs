@@ -38,5 +38,8 @@ namespace SEPFrameWork.Databases
 
         //Get a list of fields are auto increment
         List<String> GetFieldsAutoIncrement(String tableName);
+
+        //trả về tên các database 
+        List<string> GetNameDatabase();
     }
 }
