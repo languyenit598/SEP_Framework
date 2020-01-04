@@ -98,7 +98,9 @@ namespace SEPFrameWork.Forms
         #region Event
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            BaseForm frm = new BaseForm(databaseConnection, databaseName, tableName);
+            frm.ShowDialog();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
