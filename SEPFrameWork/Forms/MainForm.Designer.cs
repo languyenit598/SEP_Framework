@@ -1,6 +1,6 @@
 ﻿namespace SEPFrameWork.Forms
 {
-    partial class BaseForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,9 +39,9 @@
             // grvData
             // 
             this.grvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvData.Location = new System.Drawing.Point(41, 84);
+            this.grvData.Location = new System.Drawing.Point(28, 84);
             this.grvData.Name = "grvData";
-            this.grvData.Size = new System.Drawing.Size(790, 282);
+            this.grvData.Size = new System.Drawing.Size(951, 320);
             this.grvData.TabIndex = 0;
             // 
             // label1
@@ -59,7 +59,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(151, 392);
+            this.btnAdd.Location = new System.Drawing.Point(151, 439);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(120, 45);
             this.btnAdd.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             this.btnUpdate.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(362, 392);
+            this.btnUpdate.Location = new System.Drawing.Point(448, 439);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(120, 45);
             this.btnUpdate.TabIndex = 3;
@@ -83,7 +83,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(604, 392);
+            this.btnDelete.Location = new System.Drawing.Point(737, 439);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(120, 45);
             this.btnDelete.TabIndex = 4;
@@ -91,17 +91,17 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // BaseForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 449);
+            this.ClientSize = new System.Drawing.Size(1003, 496);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grvData);
-            this.Name = "BaseForm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BaseForm";
             ((System.ComponentModel.ISupportInitialize)(this.grvData)).EndInit();
