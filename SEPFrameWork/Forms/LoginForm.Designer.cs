@@ -41,13 +41,15 @@
             this.cbDatabase = new System.Windows.Forms.ComboBox();
             this.cbTable = new System.Windows.Forms.ComboBox();
             this.btnGo = new System.Windows.Forms.Button();
+            this.txtServer = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(54, 141);
+            this.label1.Location = new System.Drawing.Point(54, 176);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 0;
@@ -57,7 +59,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(54, 183);
+            this.label2.Location = new System.Drawing.Point(54, 218);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 16);
             this.label2.TabIndex = 1;
@@ -77,7 +79,7 @@
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(203, 138);
+            this.txtUsername.Location = new System.Drawing.Point(203, 173);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(282, 22);
             this.txtUsername.TabIndex = 3;
@@ -86,7 +88,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(203, 177);
+            this.txtPassword.Location = new System.Drawing.Point(203, 212);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(282, 22);
             this.txtPassword.TabIndex = 4;
@@ -97,7 +99,7 @@
             this.btnLogin.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLogin.Location = new System.Drawing.Point(203, 217);
+            this.btnLogin.Location = new System.Drawing.Point(203, 242);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(130, 45);
             this.btnLogin.TabIndex = 5;
@@ -110,7 +112,7 @@
             this.btnExit.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnExit.Location = new System.Drawing.Point(355, 217);
+            this.btnExit.Location = new System.Drawing.Point(355, 242);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(130, 45);
             this.btnExit.TabIndex = 6;
@@ -181,11 +183,32 @@
             this.btnGo.UseVisualStyleBackColor = false;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
+            // txtServer
+            // 
+            this.txtServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtServer.Location = new System.Drawing.Point(203, 138);
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(282, 22);
+            this.txtServer.TabIndex = 14;
+            this.txtServer.Text = ".\\SQLEXPRESS";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(54, 144);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 16);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Server";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 317);
+            this.Controls.Add(this.txtServer);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.cbTable);
             this.Controls.Add(this.cbDatabase);
@@ -222,5 +245,7 @@
         private System.Windows.Forms.ComboBox cbDatabase;
         private System.Windows.Forms.ComboBox cbTable;
         private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.TextBox txtServer;
+        private System.Windows.Forms.Label label5;
     }
 }

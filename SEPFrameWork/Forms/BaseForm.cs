@@ -17,6 +17,15 @@ namespace SEPFrameWork.Forms
             InitializeComponent();
         }
 
+        public BaseForm(string dbName, string tabName)
+        {
+            InitializeComponent();
+            tableName = tabName;
+            databaseName = dbName;
+        }
+
+        private string databaseName, tableName;
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

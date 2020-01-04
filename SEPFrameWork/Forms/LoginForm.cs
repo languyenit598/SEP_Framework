@@ -21,7 +21,7 @@ namespace SEPFrameWork.Forms
         }
 
         private int selTypeDatabase = -1, selDatabase = -1, selTable = -1;
-        private string selNameTable = "";
+        private string selNameDatabase = "", selNameTable = "";
         private IConnector databaseConnection;
 
         #region init
@@ -58,6 +58,7 @@ namespace SEPFrameWork.Forms
             // dosomething....
             var user = txtUsername.Text;
             var pass = txtPassword.Text;
+            var host = txtServer.Text;
 
             if (selTypeDatabase == -1)
             {
@@ -66,12 +67,14 @@ namespace SEPFrameWork.Forms
             else if (selTypeDatabase == 0) // SQLServer
             {
                 //cbDatabase.DataSource = databaseConnection.DanhSachCacDatabase; <------------
-                databaseConnection = new SQLServerConnection("master", @".\SQLEXPRESS", user,pass); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra? --> dùng . và master
+                databaseConnection = new SQLServerConnection("master",host, user,pass); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra? --> dùng . và master
                 HideShowComponent(1);
                 btnLogin.Text = "Đã đăng nhập!";
                 btnLogin.Enabled = false;
                 txtUsername.Enabled = false;
                 txtPassword.Enabled = false;
+                cbTypeDatabase.Enabled = false;
+                txtServer.Enabled = false;
 
                 List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
                 datDB = databaseConnection.GetNameDatabase();
@@ -80,12 +83,15 @@ namespace SEPFrameWork.Forms
             }
             else if (selTypeDatabase == 1) // MySQL
             {
-                databaseConnection = new MySQLConnector(user,pass,"localhost", 3306);
+                databaseConnection = new MySQLConnector(user,pass,host, 3306);
                 HideShowComponent(1);
                 btnLogin.Text = "Đã đăng nhập!";
                 btnLogin.Enabled = false;
                 txtUsername.Enabled = false;
                 txtPassword.Enabled = false;
+                cbTypeDatabase.Enabled = false;
+                txtServer.Enabled = false;
+
 
                 List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
                 datDB = databaseConnection.GetNameDatabase();
@@ -103,7 +109,7 @@ namespace SEPFrameWork.Forms
         private void btnGo_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(selNameTable);
-            var frm = new BaseForm();
+            var frm = new BaseForm(selNameDatabase, selNameTable);
             this.Hide();
             frm.ShowDialog();
             this.Show();
@@ -113,22 +119,14 @@ namespace SEPFrameWork.Forms
         {
             selTypeDatabase = (int)cbTypeDatabase.SelectedIndex;
             //MessageBox.Show(selTypeDatabase.ToString());
-            //List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
-            //datDB = databaseConnection.GetNameDatabase();
 
             switch (selTypeDatabase) // chọn loại DB, 0: SQLServer, 1:MySQl
             {
-                case 0: // Get all database SQLServer
-                    // dosomething
-
-                    // truyền datasource cho combobox
-                    //cbDatabase.DataSource = datDB;
+                case 0:
+                    txtServer.Text = @".\SQLEXPRESS";
                     break;
-                case 1: // Get all database MySQL
-                    // dosomething
-                    //
-                    // truyền datasource cho combobox
-                    //cbDatabase.DataSource = databaseConnection.GetNameDatabase();
+                case 1:
+                    txtServer.Text = "localhost";
                     break;
                 default:
                     break;
@@ -138,20 +136,40 @@ namespace SEPFrameWork.Forms
         private void cbDatabase_SelectionIndexChanged(object sender, EventArgs e)
         {
             selDatabase = (int)cbDatabase.SelectedIndex;
-            var selName = (string)cbDatabase.Text; // lấy text combox (tên db cần chọn)
+            selNameDatabase = (string)cbDatabase.Text; // lấy text combox (tên db cần chọn)
             //MessageBox.Show(selName);
 
-            if (selName != "")
+            if (selNameDatabase != "")
             {
-                databaseConnection = null; // trước đó khởi tạo tạm cho master
-                databaseConnection = new SQLServerConnection(selName, @".\SQLEXPRESS",txtUsername.Text, txtPassword.Text);
+                switch (selTypeDatabase)
+                {
+                    case 0: // SQL Server
+                        databaseConnection = null; // trước đó khởi tạo tạm cho master
+                        databaseConnection = new SQLServerConnection(selNameDatabase, txtServer.Text, txtUsername.Text, txtPassword.Text);
 
-                // Lấy tất cả bảng của db
-                var datTable = databaseConnection.GetNameTables();
-                //MessageBox.Show(datTable[0]);
+                        // Lấy tất cả bảng của db
+                        var datTable = databaseConnection.GetNameTables();
+                        //MessageBox.Show(datTable[0]);
 
-                // đưa dữ liệu vào comboBox
-                cbTable.DataSource = datTable;
+                        // đưa dữ liệu vào comboBox
+                        cbTable.DataSource = datTable;
+                        break;
+                    case 1: // MySQL
+
+                        databaseConnection = null; // trước đó khởi tạo tạm cho master
+                        databaseConnection = new MySQLConnector(txtUsername.Text,txtPassword.Text, txtServer.Text, 3306);
+
+                        // Lấy tất cả bảng của db
+                        var datTable2 = databaseConnection.GetNameTables();
+                        //MessageBox.Show(datTable[0]);
+
+                        // đưa dữ liệu vào comboBox
+                        cbTable.DataSource = datTable2;
+                        break;
+
+                }
+
+                
             }
         }
 

@@ -564,7 +564,8 @@ namespace SEPFrameWork.Databases
             List<string> keys = new List<string>();
             try
             {
-                var connstring = @"Data Source=.\SQLEXPRESS; Integrated Security = True";
+                //var connstring = @"Data Source=.\SQLEXPRESS; Integrated Security = True";
+                var connstring = @"Data Source=" + this.dataSource + "; Integrated Security = True";
                 //conn = this.GetDBConnection();
                 conn = new SqlConnection(connstring);
                 conn.Open();

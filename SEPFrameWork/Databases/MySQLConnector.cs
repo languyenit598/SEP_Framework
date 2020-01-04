@@ -545,7 +545,9 @@ namespace SEPFrameWork.Databases
         }
         public List<String> GetNameDatabase()
         {
-            String myConnectionString = "SERVER=localhost;UID='quochoi142';" + "PASSWORD='quochoi142';";
+            //String myConnectionString = "SERVER=localhost;UID='quochoi142';" + "PASSWORD='quochoi142';";
+            //String myConnectionString = "SERVER=sql2.freemysqlhosting.net;UID='sql2317605';" + "PASSWORD='uC4!kS3%';"; // hòa test
+            String myConnectionString = "SERVER=" + this.host + ";UID=" + this.username + ";PASSWORD=" + this.password + ";";
             List<String> Dbs = new List<string>();
             MySqlConnection conn = null;
             try
