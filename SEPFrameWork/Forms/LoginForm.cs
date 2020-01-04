@@ -127,8 +127,8 @@ namespace SEPFrameWork.Forms
             if (selName != "")
             {
                 databaseConnection = null; // trước đó khởi tạo tạm cho master
-                //databaseConnection = new SQLServerConnection(".", selName, txtUsername.Text, txtPassword.Text);
-                databaseConnection = new SQLServerConnection(".", selName, null, null);
+                databaseConnection = new SQLServerConnection(".", selName, txtUsername.Text, txtPassword.Text);
+                //databaseConnection = new SQLServerConnection(".", selName, null, null);
 
                 // Lấy tất cả bảng của db
                 //var datTable = databaseConnection.GetNameTables();
