@@ -17,7 +17,7 @@ namespace SEPFrameWork.Forms
         {
             InitializeComponent();
             LoadComboboxData();
-            //HideShowComponent(0);
+            HideShowComponent(0);
         }
 
         private int selTypeDatabase = -1, selDatabase = -1, selTable = -1;
@@ -35,11 +35,13 @@ namespace SEPFrameWork.Forms
         {
             if (type == 0)
             {
+                cbDatabase.Hide();
                 cbTable.Hide();
                 lblChooseTable.Hide();
             }
             else
             {
+                cbDatabase.Show();
                 cbTable.Show();
                 lblChooseTable.Show();
             }
@@ -61,8 +63,17 @@ namespace SEPFrameWork.Forms
             else if (selTypeDatabase == 0) // SQLServer
             {
                 //cbDatabase.DataSource = databaseConnection.DanhSachCacDatabase; <------------
+                databaseConnection = new SQLServerConnection(".","master",user,pass); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra? --> dùng . và master
+                HideShowComponent(1);
+                btnLogin.Text = "Đã đăng nhập!";
+                btnLogin.Enabled = false;
+                txtUsername.Enabled = false;
+                txtPassword.Enabled = false;
 
-                //databaseConnection = new SQLServerConnection(); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra?
+                List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
+                datDB = databaseConnection.GetNameDatabase();
+                //MessageBox.Show(datDB[0]+datDB[1]);
+                cbDatabase.DataSource = datDB;
             }
             else if (selTypeDatabase == 1) // MySQL
             {
@@ -70,10 +81,10 @@ namespace SEPFrameWork.Forms
             }
 
             // then
-            var frm = new BaseForm();
-            this.Hide();
-            frm.ShowDialog();
-            this.Show();
+            //var frm = new BaseForm();
+            //this.Hide();
+            //frm.ShowDialog();
+            //this.Show();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -85,17 +96,16 @@ namespace SEPFrameWork.Forms
         {
             selTypeDatabase = (int)cbTypeDatabase.SelectedIndex;
             //MessageBox.Show(selTypeDatabase.ToString());
-            List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
-            datDB = databaseConnection.GetNameDatabase();
+            //List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
+            //datDB = databaseConnection.GetNameDatabase();
 
             switch (selTypeDatabase) // chọn loại DB, 0: SQLServer, 1:MySQl
             {
                 case 0: // Get all database SQLServer
                     // dosomething
-                    
+
                     // truyền datasource cho combobox
                     //cbDatabase.DataSource = datDB;
-                    cbDatabase.DataSource = { "!","2"};
                     break;
                 case 1: // Get all database MySQL
                     // dosomething
@@ -111,13 +121,27 @@ namespace SEPFrameWork.Forms
         private void cbDatabase_SelectionIndexChanged(object sender, EventArgs e)
         {
             selDatabase = (int)cbDatabase.SelectedIndex;
+            var selName = (string)cbDatabase.Text; // lấy text combox (tên db cần chọn)
+            //MessageBox.Show(selName);
 
-            
+            if (selName != "")
+            {
+                databaseConnection = null; // trước đó khởi tạo tạm cho master
+                //databaseConnection = new SQLServerConnection(".", selName, txtUsername.Text, txtPassword.Text);
+                databaseConnection = new SQLServerConnection(".", selName, null, null);
+
+                // Lấy tất cả bảng của db
+                var datTable = databaseConnection.GetNameTables();
+
+                // đưa dữ liệu vào comboBox
+                //cbTable.DataSource = datTable;
+            }
         }
 
         private void cbTable_SelectionIndexChanged(object sender, EventArgs e)
         {
             selTable = (int)cbTable.SelectedIndex;
+
         }
         #endregion
 

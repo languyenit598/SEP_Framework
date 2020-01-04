@@ -33,7 +33,7 @@ namespace SEPFrameWork.Databases
             {
                 connetionString = @"Data Source=" + this.dataSource + ";Initial Catalog=" + this.databaseName + ";User ID=" + this.username + ";Password=" + this.password;
             }
-            else
+            else // username, pass đều null
             {
                 connetionString = @"Data Source=" + this.dataSource + ";Initial Catalog=" + this.databaseName + "; Integrated Security = True";
             }
@@ -570,7 +570,7 @@ namespace SEPFrameWork.Databases
                 conn.Open();
                 cmd = conn.CreateCommand();
 
-                sqlQuery = "SELECT name from sys.databases";
+                sqlQuery = "SELECT name from sys.databases WHERE name NOT IN('master', 'tempdb', 'model', 'msdb')"; // không dùng các db hệ thống
                 cmd.CommandText = sqlQuery;
                 using (reader = cmd.ExecuteReader())
                 {
