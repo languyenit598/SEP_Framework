@@ -52,30 +52,44 @@ namespace SEPFrameWork.Forms
                 grvData.Columns.Add(feild,feild);
             }
 
-            List<string[]> listTemp = new List<string[]>();
-            var sz = fields.Count; // đếm số lượng phần tử của mỗi dòng (bằng luôn số lượng cột)
+            //List<DataGridViewRow> listRow = new List<DataGridViewRow>();
+            ////Load dòng
+            //foreach (var row in dataTable) // mỗi row là 1 dictionary
+            //{
+            //    DataGridViewRow r = new DataGridViewRow();
+            //    int idx = 0;
+            //    foreach (var item in row) // môi item là 1 cặp (key,values)
+            //    {
+            //        //MessageBox.Show(item.Key + "---" + item.Value);
+            //        r.Cells[0].Value = item.Value;
+            //        idx++;
+            //    }
+            //    listRow.Add(r);
+            //}
+            //grvData.DataSource = listRow;
+
 
             //Load dòng
             foreach (var row in dataTable) // mỗi row là 1 dictionary
             {
+                //Create the new row first and get the index of the new row
+                int rowIndex = this.grvData.Rows.Add();
+                //Obtain a reference to the newly created DataGridViewRow 
+                var r = this.grvData.Rows[rowIndex];
                 int idx = 0;
-                string[] temp = new string[sz];
 
                 foreach (var item in row) // môi item là 1 cặp (key,values)
                 {
                     //MessageBox.Show(item.Key + "---" + item.Value);
-                    temp[idx] = item.Value;
+                    r.Cells[idx].Value = item.Value;
                     idx++;
                 }
-
-                listTemp.Add(temp);
             }
-            grvData.DataSource = listTemp;
 
             //Orther properties
-            grvData.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            grvData.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9.75F, FontStyle.Bold);
-            grvData.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
+            grvData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //autosize
+            grvData.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9.75F, FontStyle.Bold); // font
+            grvData.ColumnHeadersDefaultCellStyle.BackColor = Color.Black; // column
             grvData.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             grvData.EnableHeadersVisualStyles = false;
         }
