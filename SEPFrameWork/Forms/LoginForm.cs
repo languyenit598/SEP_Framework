@@ -131,7 +131,7 @@ namespace SEPFrameWork.Forms
                 databaseConnection = new SQLServerConnection(".", selName, null, null);
 
                 // Lấy tất cả bảng của db
-                var datTable = databaseConnection.GetNameTables();
+                //var datTable = databaseConnection.GetNameTables();
 
                 // đưa dữ liệu vào comboBox
                 //cbTable.DataSource = datTable;
