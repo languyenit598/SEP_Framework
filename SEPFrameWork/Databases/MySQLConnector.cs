@@ -15,16 +15,19 @@ namespace SEPFrameWork.Databases
     class MySQLConnector : IConnector
     {
 
-        private String database = "simplehr";
+        private String database ;
         private String host = "localhost";
         private int port = 3306;
         private String username = "quochoi142";
         private String password = "quochoi142";
 
 
-        public MySQLConnector()
+        public MySQLConnector(String username, String password, String host, int port)
         {
-            //get DBConfig
+            this.username = username;
+            this.password = password;
+            this.host = host;
+            this.port = port;
         }
 
         private MySqlConnection GetDBConnection()

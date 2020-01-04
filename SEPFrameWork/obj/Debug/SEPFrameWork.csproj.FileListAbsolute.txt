@@ -43,3 +43,4 @@ C:\git\SEP_Framework\SEPFrameWork\bin\Debug\Renci.SshNet.xml
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csproj.CopyComplete
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.exe
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.pdb
+D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.LoginForm.resources
