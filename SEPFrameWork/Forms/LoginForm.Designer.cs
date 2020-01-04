@@ -40,6 +40,7 @@
             this.lblChooseTable = new System.Windows.Forms.Label();
             this.cbDatabase = new System.Windows.Forms.ComboBox();
             this.cbTable = new System.Windows.Forms.ComboBox();
+            this.btnGo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -167,11 +168,25 @@
             this.cbTable.TabIndex = 11;
             this.cbTable.SelectedIndexChanged += new System.EventHandler(this.cbTable_SelectionIndexChanged);
             // 
+            // btnGo
+            // 
+            this.btnGo.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGo.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnGo.Location = new System.Drawing.Point(497, 97);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(40, 30);
+            this.btnGo.TabIndex = 12;
+            this.btnGo.Text = "GO";
+            this.btnGo.UseVisualStyleBackColor = false;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 317);
+            this.Controls.Add(this.btnGo);
             this.Controls.Add(this.cbTable);
             this.Controls.Add(this.cbDatabase);
             this.Controls.Add(this.lblChooseTable);
@@ -206,5 +221,6 @@
         private System.Windows.Forms.Label lblChooseTable;
         private System.Windows.Forms.ComboBox cbDatabase;
         private System.Windows.Forms.ComboBox cbTable;
+        private System.Windows.Forms.Button btnGo;
     }
 }

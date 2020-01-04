@@ -21,6 +21,7 @@ namespace SEPFrameWork.Forms
         }
 
         private int selTypeDatabase = -1, selDatabase = -1, selTable = -1;
+        private string selNameTable = "";
         private IConnector databaseConnection;
 
         #region init
@@ -38,12 +39,14 @@ namespace SEPFrameWork.Forms
                 cbDatabase.Hide();
                 cbTable.Hide();
                 lblChooseTable.Hide();
+                btnGo.Hide();
             }
             else
             {
                 cbDatabase.Show();
                 cbTable.Show();
                 lblChooseTable.Show();
+                btnGo.Show();
             }
         }
         #endregion
@@ -63,7 +66,7 @@ namespace SEPFrameWork.Forms
             else if (selTypeDatabase == 0) // SQLServer
             {
                 //cbDatabase.DataSource = databaseConnection.DanhSachCacDatabase; <------------
-                databaseConnection = new SQLServerConnection(".","master",user,pass); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra? --> dùng . và master
+                databaseConnection = new SQLServerConnection("master", @".\SQLEXPRESS", user,pass); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra? --> dùng . và master
                 HideShowComponent(1);
                 btnLogin.Text = "Đã đăng nhập!";
                 btnLogin.Enabled = false;
@@ -77,7 +80,7 @@ namespace SEPFrameWork.Forms
             }
             else if (selTypeDatabase == 1) // MySQL
             {
-                databaseConnection = new MySQLConnector(user,pass,"localhost", 3306); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra? --> dùng . và master
+                databaseConnection = new MySQLConnector(user,pass,"localhost", 3306);
                 HideShowComponent(1);
                 btnLogin.Text = "Đã đăng nhập!";
                 btnLogin.Enabled = false;
@@ -90,17 +93,20 @@ namespace SEPFrameWork.Forms
                 cbDatabase.DataSource = datDB;
 
             }
-
-            // then
-            //var frm = new BaseForm();
-            //this.Hide();
-            //frm.ShowDialog();
-            //this.Show();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(selNameTable);
+            var frm = new BaseForm();
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
         }
 
         private void cbTypeDatabase_SelectionIndexChanged(object sender, EventArgs e)
@@ -138,21 +144,21 @@ namespace SEPFrameWork.Forms
             if (selName != "")
             {
                 databaseConnection = null; // trước đó khởi tạo tạm cho master
-                databaseConnection = new SQLServerConnection(".", selName, txtUsername.Text, txtPassword.Text);
-                //databaseConnection = new SQLServerConnection(".", selName, null, null);
+                databaseConnection = new SQLServerConnection(selName, @".\SQLEXPRESS",txtUsername.Text, txtPassword.Text);
 
                 // Lấy tất cả bảng của db
-                //var datTable = databaseConnection.GetNameTables();
+                var datTable = databaseConnection.GetNameTables();
+                //MessageBox.Show(datTable[0]);
 
                 // đưa dữ liệu vào comboBox
-                //cbTable.DataSource = datTable;
+                cbTable.DataSource = datTable;
             }
         }
 
         private void cbTable_SelectionIndexChanged(object sender, EventArgs e)
         {
             selTable = (int)cbTable.SelectedIndex;
-
+            selNameTable = (string)cbTable.Text;
         }
         #endregion
 
