@@ -564,7 +564,9 @@ namespace SEPFrameWork.Databases
             List<string> keys = new List<string>();
             try
             {
-                conn = this.GetDBConnection();
+                var connstring = @"Data Source=.;Initial Catalog=master;Integrated Security = True";
+                //conn = this.GetDBConnection();
+                conn = new SqlConnection(connstring);
                 conn.Open();
                 cmd = conn.CreateCommand();
 

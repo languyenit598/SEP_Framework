@@ -35,13 +35,11 @@ namespace SEPFrameWork.Forms
         {
             if (type == 0)
             {
-                cbDatabase.Hide();
                 cbTable.Hide();
                 lblChooseTable.Hide();
             }
             else
             {
-                cbDatabase.Show();
                 cbTable.Show();
                 lblChooseTable.Show();
             }
@@ -87,23 +85,23 @@ namespace SEPFrameWork.Forms
         {
             selTypeDatabase = (int)cbTypeDatabase.SelectedIndex;
             //MessageBox.Show(selTypeDatabase.ToString());
-
-            List<string> datDB = new List<string>(); // chứa tên các database. ex: QLCafe, QLNhaSach, ...
-
+            List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
+            datDB = databaseConnection.GetNameDatabase();
 
             switch (selTypeDatabase) // chọn loại DB, 0: SQLServer, 1:MySQl
             {
-                case 0:
+                case 0: // Get all database SQLServer
                     // dosomething
-
+                    
                     // truyền datasource cho combobox
-                    cbDatabase.DataSource = datDB;
+                    //cbDatabase.DataSource = datDB;
+                    cbDatabase.DataSource = { "!","2"};
                     break;
-                case 1:
+                case 1: // Get all database MySQL
                     // dosomething
-
+                    //
                     // truyền datasource cho combobox
-                    cbDatabase.DataSource = datDB;
+                    //cbDatabase.DataSource = databaseConnection.GetNameDatabase();
                     break;
                 default:
                     break;
@@ -114,14 +112,6 @@ namespace SEPFrameWork.Forms
         {
             selDatabase = (int)cbDatabase.SelectedIndex;
 
-            List<string> datTable = new List<string>(); // chứa tên các table
-
-            // get tất cả tên các table
-            // ...
-            // ...
-
-            // gán cho combobox
-            cbTable.DataSource = datTable;
             
         }
 
