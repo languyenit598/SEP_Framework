@@ -17,7 +17,7 @@ namespace SEPFrameWork.Databases
         public String password { get; set; }
 
 
-        public SQLServerConnection(String databaseName, String dataSource, String username = null, String password = null)
+        public SQLServerConnection(String databaseName, String dataSource = @".\SQLEXPRESS", String username = null, String password = null)
         {
             this.databaseName = databaseName;
             this.dataSource = dataSource;
@@ -564,7 +564,7 @@ namespace SEPFrameWork.Databases
             List<string> keys = new List<string>();
             try
             {
-                var connstring = @"Data Source=.;Initial Catalog=master;Integrated Security = True";
+                var connstring = @"Data Source=.\SQLEXPRESS; Integrated Security = True";
                 //conn = this.GetDBConnection();
                 conn = new SqlConnection(connstring);
                 conn.Open();
