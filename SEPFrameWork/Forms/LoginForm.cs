@@ -77,6 +77,17 @@ namespace SEPFrameWork.Forms
             }
             else if (selTypeDatabase == 1) // MySQL
             {
+                databaseConnection = new MySQLConnector(user,pass,"localhost", 3306); //ngoài username & password đoạn code này yêu cầu thêm tên database, vậy cái này lấy ở đâu ra? --> dùng . và master
+                HideShowComponent(1);
+                btnLogin.Text = "Đã đăng nhập!";
+                btnLogin.Enabled = false;
+                txtUsername.Enabled = false;
+                txtPassword.Enabled = false;
+
+                List<string> datDB = null; // chứa tên các database. ex: QLCafe, QLNhaSach, ...
+                datDB = databaseConnection.GetNameDatabase();
+                //MessageBox.Show(datDB[0]+datDB[1]);
+                cbDatabase.DataSource = datDB;
 
             }
 
