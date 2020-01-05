@@ -22,12 +22,12 @@ namespace SEPFrameWork.Databases
         private String password = "quochoi142";
 
 
-        public MySQLConnector(String username, String password, String host, int port)
+        public MySQLConnector(String username, String password, String host, string database)
         {
             this.username = username;
             this.password = password;
             this.host = host;
-            this.port = port;
+            this.database = database;
         }
 
         private MySqlConnection GetDBConnection()

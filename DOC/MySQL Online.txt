@@ -1,0 +1,4 @@
+Server: sql2.freemysqlhosting.net
+Name: sql2317605
+Username: sql2317605
+Password: uC4!kS3%
