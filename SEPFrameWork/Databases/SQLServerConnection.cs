@@ -57,6 +57,15 @@ namespace SEPFrameWork.Databases
             String sqlQuery;
             //tạo list các fields để insert dữ liệu
             List<string> listFields = this.GetNameFieldsOfTable(tableName);
+            List<string> listAutoIncrement = this.GetFieldsAutoIncrement(tableName);
+            foreach (var e in listAutoIncrement)
+            {
+                if (listFields.Contains(e))
+                {
+                    listFields.Remove(e);
+                }
+            }
+
 
             // sau tên table sẽ là các trường dữ liệu để chèn vào
             StringBuilder fieldsString = new StringBuilder();
