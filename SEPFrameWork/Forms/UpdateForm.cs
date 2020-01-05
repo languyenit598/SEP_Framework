@@ -88,6 +88,10 @@ namespace SEPFrameWork.Forms
             {
                 MessageBox.Show("Cập nhật dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else
+            {
+                MessageBox.Show("Cập nhật không thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
     }

@@ -134,6 +134,10 @@ namespace SEPFrameWork.Forms
                 {
                     MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessageBox.Show("Xóa Thất Bại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 // Refresh
                 LoadTable();
             }
