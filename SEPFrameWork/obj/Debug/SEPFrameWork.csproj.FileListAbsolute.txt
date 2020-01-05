@@ -45,3 +45,5 @@ C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.pdb
 D:\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.LoginForm.resources
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.MainForm.resources
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.BaseForm.resources
+C:\git\SEP_Framework\SEPFrameWork\bin\Debug\Icon\autoKey.png
+C:\git\SEP_Framework\SEPFrameWork\bin\Debug\Icon\primaryKey.png
