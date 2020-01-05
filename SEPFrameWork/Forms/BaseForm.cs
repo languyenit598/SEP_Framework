@@ -18,16 +18,17 @@ namespace SEPFrameWork.Forms
             InitializeComponent();
         }
 
-        public BaseForm(IConnector dbConn, string dbName, string tabName)
+        public BaseForm(IConnector dbConn, string dbName, string tabName,string windowsName)
         {
             InitializeComponent();
             databaseConnection = dbConn;
             tableName = tabName;
             databaseName = dbName;
+            this.windowsName = windowsName;
             Load();
         }
 
-        private string databaseName, tableName;
+        private string databaseName, tableName,windowsName;
         private IConnector databaseConnection = null;
         private List<string> fields = null;
         private List<string> fieldsAuto = null;
@@ -36,6 +37,8 @@ namespace SEPFrameWork.Forms
         #region Load
         private void Load()
         {
+            this.Text = windowsName;
+            lblHeader.Text = windowsName + " BẢNG";
             fields = databaseConnection.GetNameFieldsOfTable(tableName);
             fieldsAuto = databaseConnection.GetFieldsAutoIncrement(tableName);
             fieldsPrimary = databaseConnection.GetPrimaryKeyOfTable(tableName);
@@ -94,6 +97,25 @@ namespace SEPFrameWork.Forms
                 idx++;
             }
 
+            Button btn = new Button();
+            btn.BackColor = System.Drawing.SystemColors.HotTrack;
+            btn.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            btn.Location = new System.Drawing.Point(x + 190 , y + idx * 50);
+            btn.Name = "btn";
+            btn.Size = new System.Drawing.Size(130, 45);
+            btn.Text = windowsName;
+            btn.UseVisualStyleBackColor = false;
+            btn.Click += new System.EventHandler(btn_Click);
+            this.Controls.Add(btn);
+
+        }
+        #endregion
+
+        #region Event
+        private void btn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Clicked!");
         }
         #endregion
 
