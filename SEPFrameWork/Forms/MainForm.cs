@@ -45,7 +45,9 @@ namespace SEPFrameWork.Forms
 
         private void LoadTable()
         {
-            grvData.DataSource = null;
+            // clear dữ liệu
+            grvData.Rows.Clear();
+            grvData.Refresh();
             //Load cột
             foreach (var feild in fields)
             {
@@ -113,6 +115,18 @@ namespace SEPFrameWork.Forms
         private void btnDelete_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Delete clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var obj = getCurrentRow();
+            var res = MessageBox.Show("Bạn có muốn xóa thông tin dòng hiện tại không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (res==DialogResult.OK)
+            {
+                databaseConnection.DeleteData(tableName, obj);
+                MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Refresh
+                LoadTable();
+            }
+
+
+            
         }
         #endregion
 
