@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SEPFrameWork.Databases
 {
-    class SQLServerConnection : IConnector
+    public class SQLServerConnection : IConnector
     {
         public String databaseName { get; set; }
         public String dataSource { get; set; }
@@ -179,7 +179,7 @@ namespace SEPFrameWork.Databases
 
             // chuỗi để lưu index 
             StringBuilder paramsUpdateSET = new StringBuilder();
-            StringBuilder paramsUpdateWHERE = new StringBuilder();
+            //StringBuilder paramsUpdateWHERE = new StringBuilder();
 
 
             if (listFields.Count < 1)
@@ -187,27 +187,16 @@ namespace SEPFrameWork.Databases
                 return false;
             }
 
-            //for (int i = 0; i < listFields.Count; i++)
-            //{
-            //    paramsUpdateSET.Append(listFields[i]).Append(" = ").Append("@paramset").Append(i);
-            //    paramsUpdateWHERE.Append(listFields[i]).Append(" ").Append("@equals").Append(i).Append(" ").Append("@paramwhere").Append(i);
-            //    if (i < listFields.Count - 1)
-            //    {
-            //        paramsUpdateSET.Append(", ");
-            //        paramsUpdateWHERE.Append(" AND ");
-            //    }
-            //}
             for (int i = 0; i < listFields.Count; i++)
             {
                 paramsUpdateSET.Append(listFields[i]).Append(" = ").Append("@paramset").Append(i);
-                paramsUpdateWHERE.Append(listFields[i]).Append(" = ").Append("@paramwhere").Append(i);
+                //paramsUpdateWHERE.Append(listFields[i]).Append(" = ").Append("@paramwhere").Append(i);              
                 if (i < listFields.Count - 1)
                 {
                     paramsUpdateSET.Append(", ");
-                    paramsUpdateWHERE.Append(" AND ");
+                    //paramsUpdateWHERE.Append(" AND ");
                 }
             }
-
             try
             {
                 if (listFields.Count != newData.Length)
@@ -217,26 +206,13 @@ namespace SEPFrameWork.Databases
                 conn = this.GetDBConnection();
                 conn.Open();
                 cmd = conn.CreateCommand();
-                sqlQuery = "UPDATE " + tableName + " SET " + paramsUpdateSET + " WHERE " + paramsUpdateWHERE;
+                sqlQuery = "UPDATE " + tableName + " SET " + paramsUpdateSET + " WHERE " + listFields[0] + " = " + oldData[0];
                 cmd.CommandText = sqlQuery;
-
                 for (int i = 0; i < listFields.Count; i++)
                 {
                     cmd.Parameters.AddWithValue("@paramset" + i, newData[i]);
-                    cmd.Parameters.AddWithValue("@paramwhere" + i, oldData[i]);
-                    //if (oldData[i].ToString() != "")
-                    //{
-                    //    cmd.Parameters.AddWithValue("@equals" + i, "=");
-                    //    cmd.Parameters.AddWithValue("@paramwhere" + i, oldData[i]);
-                    //}
-                    //else
-                    //{
-                    //    cmd.Parameters.AddWithValue("@equals" + i, "IS NULL");
-                    //    cmd.Parameters.AddWithValue("@paramwhere" + i, "");
-                    //}
-
+                    //cmd.Parameters.AddWithValue("@paramwhere" + i, oldData[i]);                  
                 }
-
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -252,7 +228,6 @@ namespace SEPFrameWork.Databases
                 }
             }
         }
-
         public bool DeleteData(string tableName, object[] data)
         {
             SqlConnection conn = null;
@@ -263,24 +238,22 @@ namespace SEPFrameWork.Databases
             //tạo list các fields để upfate dữ liệu
             List<string> listFields = this.GetNameFieldsOfTable(tableName);
 
-
-            StringBuilder paramDelete = new StringBuilder();
-
-            for (int i = 0; i < listFields.Count; i++)
-            {
-                paramDelete.Append(listFields[i]).Append(" = ").Append("@param").Append(i);
-                if (i < listFields.Count - 1)
-                {
-                    paramDelete.Append(" AND ");
-                }
-            }
+            //StringBuilder paramDelete = new StringBuilder();
+            //for (int i = 0; i < listFields.Count; i++)
+            //{
+            //    paramDelete.Append(listFields[i]).Append(" = ").Append("@param").Append(i);
+            //    if (i < listFields.Count - 1)
+            //    {
+            //        paramDelete.Append(" AND ");
+            //    }
+            //}
             try
             {
                 conn = this.GetDBConnection();
                 conn.Open();
                 cmd = conn.CreateCommand();
 
-                sqlQuery = "DELETE FROM " + tableName + " WHERE " + paramDelete;
+                sqlQuery = "DELETE FROM " + tableName + " WHERE " + listFields[0] + " = " + data[0];
                 cmd.CommandText = sqlQuery;
 
                 for (int i = 0; i < data.Length; i++)
@@ -288,8 +261,12 @@ namespace SEPFrameWork.Databases
                     cmd.Parameters.AddWithValue("@param" + i, data[i]);
                 }
 
-                cmd.ExecuteNonQuery();
-                return true;
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+                return false;
+                
             }
             catch (Exception ex)
             {

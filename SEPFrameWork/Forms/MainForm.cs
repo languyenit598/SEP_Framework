@@ -54,7 +54,7 @@ namespace SEPFrameWork.Forms
             //Load cột
             foreach (var feild in fields)
             {
-                grvData.Columns.Add(feild,feild);
+                grvData.Columns.Add(feild, feild);
             }
 
             //List<DataGridViewRow> listRow = new List<DataGridViewRow>();
@@ -104,7 +104,7 @@ namespace SEPFrameWork.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName,"THÊM",getCurrentRow());
+            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName, "THÊM", getCurrentRow());
             this.Hide();
             frm.ShowDialog();
             // Refresh
@@ -128,16 +128,15 @@ namespace SEPFrameWork.Forms
             //MessageBox.Show("Delete clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             var obj = getCurrentRow();
             var res = MessageBox.Show("Bạn có muốn xóa thông tin dòng hiện tại không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (res==DialogResult.OK)
+            if (res == DialogResult.OK)
             {
-                databaseConnection.DeleteData(tableName, obj);
-                MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (databaseConnection.DeleteData(tableName, obj))
+                {
+                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 // Refresh
                 LoadTable();
             }
-
-
-            
         }
         #endregion
 
@@ -149,7 +148,7 @@ namespace SEPFrameWork.Forms
             var r = this.grvData.Rows[selRow];
             var sz = fields.Count();
             Object[] obj = new Object[sz];
-            for (int i=0;i<sz;i++)
+            for (int i = 0; i < sz; i++)
             {
                 obj[i] = r.Cells[i].Value;
             }

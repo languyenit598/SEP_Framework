@@ -51,9 +51,10 @@ namespace SEPFrameWork.Forms
             int idxObj = 0;
 
             foreach (var field in base.fields)
-            {               
+            {
                 var checkdata = base.databaseConnection.GetTypeofFields(base.tableName, field).Name;
-                if (checkdata.Equals("Int32")){
+                if (checkdata.Equals("Int32"))
+                {
                     newdata[idxObj] = Int32.Parse(getDataTextBox("txt" + idx.ToString())); // object[0]=txt0.Text ......
                 }
                 else if (checkdata.Equals("String"))
@@ -62,9 +63,9 @@ namespace SEPFrameWork.Forms
                 }
                 else if (checkdata.Equals("DateTime"))
                 {
-                    newdata[idxObj] =DateTime.Parse(getDataTextBox("txt" + idx.ToString()));
+                    newdata[idxObj] = DateTime.Parse(getDataTextBox("txt" + idx.ToString()));
                 }
-                else if(checkdata.Equals("Boolean"))
+                else if (checkdata.Equals("Boolean"))
                 {
                     newdata[idxObj] = Boolean.Parse(getDataTextBox("txt" + idx.ToString()));
                 }
@@ -75,6 +76,10 @@ namespace SEPFrameWork.Forms
                 else if (checkdata.Equals("Byte[]"))
                 {
                     newdata[idxObj] = Encoding.ASCII.GetBytes(getDataTextBox("txt" + idx.ToString()));
+                }
+                else
+                {
+                    newdata[idxObj] = getDataTextBox("txt" + idx.ToString());
                 }
                 idxObj++;
                 idx++;

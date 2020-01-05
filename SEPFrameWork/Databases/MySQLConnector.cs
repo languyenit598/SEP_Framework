@@ -12,10 +12,10 @@ using MySql.Data.MySqlClient;
 
 namespace SEPFrameWork.Databases
 {
-    class MySQLConnector : IConnector
+    public class MySQLConnector : IConnector
     {
 
-        private String database ;
+        private String database;
         private String host = "localhost";
         private int port = 3306;
         private String username = "quochoi142";
