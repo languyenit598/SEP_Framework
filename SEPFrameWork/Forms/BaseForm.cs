@@ -41,14 +41,18 @@ namespace SEPFrameWork.Forms
         #region Load
         protected new void Load()
         {
+            // get data properties
             lblHeader.Text = windowsName + " BẢNG";
             fields = databaseConnection.GetNameFieldsOfTable(tableName);
             fieldsAuto = databaseConnection.GetFieldsAutoIncrement(tableName);
             fieldsPrimary = databaseConnection.GetPrimaryKeyOfTable(tableName);
             fieldsNullable = databaseConnection.GetNameFieldsNotNullOfTable(tableName);
+
+
             int x = 50, y = 100;
             int idx = 0;
             ToolTip tt = new ToolTip();
+
 
             foreach (var field in fields)
             {

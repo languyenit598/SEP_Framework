@@ -105,18 +105,22 @@ namespace SEPFrameWork.Forms
         {
             //MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             BaseForm frm = new AddForm(databaseConnection, databaseName, tableName,"THÊM",getCurrentRow());
+            this.Hide();
             frm.ShowDialog();
             // Refresh
             LoadTable();
+            this.Show();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Update clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             BaseForm frm = new UpdateForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", getCurrentRow());
+            this.Hide();
             frm.ShowDialog();
             // Refresh
             LoadTable();
+            this.Show();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

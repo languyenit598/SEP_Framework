@@ -27,6 +27,9 @@ namespace SEPFrameWork.Forms
             base.windowsName = windowsName;
             base.obj = obj;
             this.Text = base.windowsName; // override lại tên
+            // set dài rộng cửa sổ
+            int sz = base.fields.Count;
+            this.Size = new Size(713, 100 + sz * 50 + 100);
         }
 
         protected override void doSomething()
