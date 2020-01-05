@@ -18,19 +18,26 @@ namespace SEPFrameWork.Forms
             InitializeComponent();
         }
 
-        public AddForm(IConnector dbConn, string dbName, string tabName, string windowsName):base(dbConn, dbName, tabName, windowsName)
+        public AddForm(IConnector dbConn, string dbName, string tabName, string windowsName,Object[] obj):base(dbConn, dbName, tabName, windowsName,obj)
         {
             InitializeComponent();
             base.databaseConnection = dbConn;
             base.tableName = tabName;
             base.databaseName = dbName;
             base.windowsName = windowsName;
+            base.obj = obj;
             this.Text = base.windowsName; // override lại tên
         }
 
         protected override void doSomething()
         {
             // code here
+
+        }
+
+        protected override void LoadTextbox(object[] data)
+        {
+            // Không làm gì, vì form add có cần add sẵn gì đâu
         }
 
     }

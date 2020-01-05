@@ -99,14 +99,14 @@ namespace SEPFrameWork.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName,"THÊM");
+            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName,"THÊM",new Object[] { "1", "2" });
             frm.ShowDialog();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Update clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName, "CẬP NHẬT");
+            BaseForm frm = new UpdateForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", new Object[] { "1", "2" });
             frm.ShowDialog();
         }
 

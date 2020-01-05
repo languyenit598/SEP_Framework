@@ -18,14 +18,16 @@ namespace SEPFrameWork.Forms
             InitializeComponent();
         }
 
-        public BaseForm(IConnector dbConn, string dbName, string tabName,string windowsName)
+        public BaseForm(IConnector dbConn, string dbName, string tabName,string windowsName, Object[] obj)
         {
             InitializeComponent();
             databaseConnection = dbConn;
             tableName = tabName;
             databaseName = dbName;
             this.windowsName = windowsName;
+            this.obj = obj;
             Load();
+            LoadTextbox(obj);
         }
 
         protected string databaseName, tableName,windowsName;
@@ -34,9 +36,10 @@ namespace SEPFrameWork.Forms
         protected List<string> fieldsAuto = null;
         protected List<string> fieldsPrimary = null;
         protected List<string> fieldsNullable = null;
+        protected Object[] obj = null;
 
         #region Load
-        protected void Load()
+        protected new void Load()
         {
             lblHeader.Text = windowsName + " BẢNG";
             fields = databaseConnection.GetNameFieldsOfTable(tableName);
@@ -147,8 +150,9 @@ namespace SEPFrameWork.Forms
             lblNote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblNote.Location = new System.Drawing.Point(x + 430, y - 67);
             this.Controls.Add(lblNote);
-
         }
+
+        protected abstract void LoadTextbox(Object[] data);
         #endregion
 
         #region Event
