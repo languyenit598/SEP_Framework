@@ -33,6 +33,7 @@ namespace SEPFrameWork.Forms
         private List<string> fields = null;
         private List<string> fieldsAuto = null;
         private List<string> fieldsPrimary = null;
+        private List<string> fieldsNullable = null;
 
         #region Load
         private void Load()
@@ -42,6 +43,7 @@ namespace SEPFrameWork.Forms
             fields = databaseConnection.GetNameFieldsOfTable(tableName);
             fieldsAuto = databaseConnection.GetFieldsAutoIncrement(tableName);
             fieldsPrimary = databaseConnection.GetPrimaryKeyOfTable(tableName);
+            fieldsNullable = databaseConnection.GetNameFieldsNotNullOfTable(tableName);
             int x = 50, y = 100;
             int idx = 0;
             ToolTip tt = new ToolTip();
@@ -64,7 +66,9 @@ namespace SEPFrameWork.Forms
                 txt.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 txt.Location = new System.Drawing.Point(x + 250, y + idx * 50);
                 txt.Name = "txt" + idx;
+                this.Controls.Add(txt);
 
+                // check auto increment
                 if (fieldsAuto.Contains(field, StringComparer.OrdinalIgnoreCase))
                 {
                     txt.Enabled = false;
@@ -78,6 +82,8 @@ namespace SEPFrameWork.Forms
                     tt.SetToolTip(pbAuto, "Thuộc tính tự tăng, không thể sửa giá trị");
                     this.Controls.Add(pbAuto);
                 }
+
+                // check primary key
                 if (fieldsPrimary.Contains(field,StringComparer.OrdinalIgnoreCase))
                 {
                     lbl.ForeColor = Color.Red;
@@ -92,11 +98,29 @@ namespace SEPFrameWork.Forms
                     tt.SetToolTip(pbPrimary, "Thuộc tính primary, không thể sửa giá trị");
                     this.Controls.Add(pbPrimary);
                 }
-                this.Controls.Add(txt);
+
+                // check nullable
+                CheckBox chk = new CheckBox();
+                chk.Size = new Size(25,25);
+                chk.Location = new System.Drawing.Point(x + 560, y + idx * 50);
+                chk.Name = "chk" + idx;
+                chk.Enabled = false;
+                this.Controls.Add(chk);
+                if (fieldsNullable.Contains(field, StringComparer.OrdinalIgnoreCase))
+                {
+                    chk.Checked = true;
+                    tt.SetToolTip(chk, "Không thể null");
+                }
+                else
+                {
+                    chk.Checked = false;
+                    tt.SetToolTip(chk, "Có thể null");
+                }
 
                 idx++;
             }
 
+            // button
             Button btn = new Button();
             btn.BackColor = System.Drawing.SystemColors.HotTrack;
             btn.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -109,6 +133,22 @@ namespace SEPFrameWork.Forms
             btn.Click += new System.EventHandler(btn_Click);
             this.Controls.Add(btn);
 
+            // note
+            CheckBox chkNote = new CheckBox();
+            chkNote.Size = new Size(25, 25);
+            chkNote.Location = new System.Drawing.Point(x + 400, y - 70);
+            chkNote.ForeColor = Color.Red;
+            chkNote.Enabled = false;
+            chkNote.Checked = true;
+            this.Controls.Add(chkNote);
+            Label lblNote = new Label();
+            lblNote.Text = " (*) Bắt buộc";
+            lblNote.Size = new Size(180, 30);
+            lblNote.ForeColor = Color.Red;
+            lblNote.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblNote.Location = new System.Drawing.Point(x + 430, y - 67);
+            this.Controls.Add(lblNote);
+
         }
         #endregion
 
@@ -116,6 +156,18 @@ namespace SEPFrameWork.Forms
         private void btn_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Clicked!");
+
+            // kiểm tra not null -> bắt buộc nhập
+            int idx = 0;
+            foreach (var field in fields)
+            {
+                if (fieldsNullable.Contains(field, StringComparer.OrdinalIgnoreCase))
+                {
+                    var name = "txt" + idx;
+                }
+                idx++;
+            }
+
         }
         #endregion
 

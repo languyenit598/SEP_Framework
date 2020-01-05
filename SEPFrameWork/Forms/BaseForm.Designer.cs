@@ -36,7 +36,7 @@
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblHeader.Location = new System.Drawing.Point(195, 28);
+            this.lblHeader.Location = new System.Drawing.Point(204, 28);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(240, 22);
             this.lblHeader.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 450);
+            this.ClientSize = new System.Drawing.Size(697, 450);
             this.Controls.Add(this.lblHeader);
             this.Name = "BaseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
