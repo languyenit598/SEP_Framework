@@ -87,7 +87,7 @@ namespace SEPFrameWork.Forms
                 if (fieldsPrimary.Contains(field,StringComparer.OrdinalIgnoreCase))
                 {
                     lbl.ForeColor = Color.Red;
-                    txt.Enabled = false;
+                    txt.Enabled = true;
                     txt.ForeColor = Color.Red;
                     PictureBox pbPrimary = new PictureBox();
                     pbPrimary.Size = new Size(25, 25);
@@ -155,7 +155,7 @@ namespace SEPFrameWork.Forms
         #region Event
         private void btn_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Clicked!");
+            
 
             // kiểm tra not null -> bắt buộc nhập
             int idx = 0;
@@ -176,7 +176,7 @@ namespace SEPFrameWork.Forms
                 idx++;
             }
 
-            
+            MessageBox.Show("Qua các kiểm tra null. Chưa gọi hàm thêm!");
 
         }
 
