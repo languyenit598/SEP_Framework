@@ -450,7 +450,7 @@ namespace SEPFrameWork.Databases
                     {
                         while (reader.Read())
                         {
-                            listResult.Add(reader.GetString(0));
+                            listResult.Add(reader.GetString(1));
                         }
                     }
                 }
