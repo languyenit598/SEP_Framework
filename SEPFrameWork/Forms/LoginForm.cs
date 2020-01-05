@@ -83,7 +83,7 @@ namespace SEPFrameWork.Forms
             }
             else if (selTypeDatabase == 1) // MySQL
             {
-                databaseConnection = new MySQLConnector(user,pass,host, 3306);
+                databaseConnection = new MySQLConnector(user,pass,host, "3306");
                 HideShowComponent(1);
                 btnLogin.Text = "Đã đăng nhập!";
                 btnLogin.Enabled = false;
@@ -157,7 +157,7 @@ namespace SEPFrameWork.Forms
                     case 1: // MySQL
 
                         databaseConnection = null; // trước đó khởi tạo tạm cho master
-                        databaseConnection = new MySQLConnector(txtUsername.Text,txtPassword.Text, txtServer.Text, 3306);
+                        databaseConnection = new MySQLConnector(txtUsername.Text,txtPassword.Text, txtServer.Text, selNameDatabase);
 
                         // Lấy tất cả bảng của db
                         var datTable2 = databaseConnection.GetNameTables();
