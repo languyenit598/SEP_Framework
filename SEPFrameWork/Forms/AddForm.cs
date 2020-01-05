@@ -32,7 +32,29 @@ namespace SEPFrameWork.Forms
         protected override void doSomething()
         {
             // code here
+            int idx = 0;
+            int sz = base.fields.Count;
+            Object[] obj = null;
+            if (base.fieldsAuto.Count>0) // có 1 dòng tự tăng (auto increment) => bỏ qua dòng đó k truyền
+            {
+                obj = new Object[sz - 1]; // bỏ qua cột auto
+                idx++; // lấy từ txt1.Text
+            }
+            else
+            {
+                obj = new Object[sz]; // bỏ qua cột auto
+                // Lấy từ txt0.Text
+            }
+            int idxObj = 0;
 
+            foreach (var field in base.fields)
+            {
+                obj[idxObj] = getDataTextBox("txt" + idx.ToString()); // object[0]=txt0.Text ......
+                idxObj++;
+                idx++;
+            }
+            base.databaseConnection.CreateData(base.tableName, obj);
+            MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

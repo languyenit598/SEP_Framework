@@ -165,6 +165,9 @@ namespace SEPFrameWork.Forms
             // then dosomething
             doSomething();
 
+            // exit
+            this.Close();
+
         }
 
         protected abstract void doSomething();

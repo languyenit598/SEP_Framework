@@ -106,6 +106,8 @@ namespace SEPFrameWork.Forms
             //MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             BaseForm frm = new AddForm(databaseConnection, databaseName, tableName,"THÊM",getCurrentRow());
             frm.ShowDialog();
+            // Refresh
+            LoadTable();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -113,6 +115,8 @@ namespace SEPFrameWork.Forms
             //MessageBox.Show("Update clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             BaseForm frm = new UpdateForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", getCurrentRow());
             frm.ShowDialog();
+            // Refresh
+            LoadTable();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
