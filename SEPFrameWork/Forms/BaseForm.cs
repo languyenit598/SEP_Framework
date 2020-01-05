@@ -26,8 +26,8 @@ namespace SEPFrameWork.Forms
             databaseName = dbName;
             this.windowsName = windowsName;
             this.obj = obj;
+            //MessageBox.Show(obj[0].ToString());
             Load();
-            LoadTextbox(obj);
         }
 
         protected string databaseName, tableName,windowsName;
@@ -63,7 +63,10 @@ namespace SEPFrameWork.Forms
 
                 // Add textbox
                 TextBox txt = new TextBox();
-                txt.Text = "";
+                if (windowsName == "THÊM")
+                    txt.Text = "";
+                else
+                    txt.Text = obj[idx].ToString();
                 txt.Size = new Size(300, 30);
                 txt.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 txt.Location = new System.Drawing.Point(x + 250, y + idx * 50);
@@ -152,7 +155,6 @@ namespace SEPFrameWork.Forms
             this.Controls.Add(lblNote);
         }
 
-        protected abstract void LoadTextbox(Object[] data);
         #endregion
 
         #region Event

@@ -34,11 +34,5 @@ namespace SEPFrameWork.Forms
             // code here
 
         }
-
-        protected override void LoadTextbox(object[] data)
-        {
-            // Không làm gì, vì form add có cần add sẵn gì đâu
-        }
-
     }
 }
