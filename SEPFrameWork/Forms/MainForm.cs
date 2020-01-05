@@ -99,20 +99,36 @@ namespace SEPFrameWork.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName,"THÊM",new Object[] { "1", "2" });
+            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName,"THÊM",getCurrentRow());
             frm.ShowDialog();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Update clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            BaseForm frm = new UpdateForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", new Object[] { "1", "2" });
+            BaseForm frm = new UpdateForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", getCurrentRow());
             frm.ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Delete clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Delete clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        #endregion
+
+        #region Processer
+        private Object[] getCurrentRow()
+        {
+            var selRow = grvData.CurrentCell.RowIndex;
+            //MessageBox.Show(selRow.ToString());
+            var r = this.grvData.Rows[selRow];
+            var sz = fields.Count();
+            Object[] obj = new Object[sz];
+            for (int i=0;i<sz;i++)
+            {
+                obj[i] = r.Cells[i].Value;
+            }
+            return obj;
         }
         #endregion
     }
