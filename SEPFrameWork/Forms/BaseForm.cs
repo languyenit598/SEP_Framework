@@ -155,7 +155,7 @@ namespace SEPFrameWork.Forms
         #region Event
         private void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked!");
+            //MessageBox.Show("Clicked!");
 
             // kiểm tra not null -> bắt buộc nhập
             int idx = 0;
@@ -164,11 +164,47 @@ namespace SEPFrameWork.Forms
                 if (fieldsNullable.Contains(field, StringComparer.OrdinalIgnoreCase))
                 {
                     var name = "txt" + idx;
+                    //MessageBox.Show(getDataTextBox("txt1"));
+                    var txt = getDataTextBox("txt"+idx.ToString()); // get textbox thứ i
+                    //MessageBox.Show(txt);
+                    if (txt == "" && checkTextboxEnable("txt" + idx.ToString())) // textbox bắt buộc nhưng để trống (trừ trường hợp bị disable)
+                    {
+                        MessageBox.Show("Thuộc tính " + field + " không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    }
                 }
                 idx++;
             }
 
+            
+
         }
+
+        // Kiểm tra textbox có enable không?
+        private bool checkTextboxEnable(string textboxName)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                    return (control as TextBox).Enabled;
+            }
+            return true;
+        }
+
+        // lấy nội dung của textbox khi biết tên
+        private string getDataTextBox(string textboxName) 
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                    if ((control as TextBox).Name == textboxName)
+                    {
+                        return control.Text;
+                    }
+            }
+            return "";
+        }
+
         #endregion
 
     }
