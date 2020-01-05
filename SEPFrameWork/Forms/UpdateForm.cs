@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SEPFrameWork.Forms
 {
-    public partial class UpdateFrom : Form
+    public partial class UpdateForm : Form
     {
-        public UpdateFrom()
+        public UpdateForm()
         {
             InitializeComponent();
         }

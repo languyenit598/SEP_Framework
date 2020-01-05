@@ -103,7 +103,7 @@
             this.Controls.Add(this.grvData);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BaseForm";
+            this.Text = "Thông tin bảng";
             ((System.ComponentModel.ISupportInitialize)(this.grvData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

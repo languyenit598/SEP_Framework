@@ -11,7 +11,7 @@ using SEPFrameWork.Databases;
 
 namespace SEPFrameWork.Forms
 {
-    public partial class BaseForm : Form
+    public abstract partial class BaseForm : Form
     {
         public BaseForm()
         {
@@ -28,17 +28,16 @@ namespace SEPFrameWork.Forms
             Load();
         }
 
-        private string databaseName, tableName,windowsName;
-        private IConnector databaseConnection = null;
-        private List<string> fields = null;
-        private List<string> fieldsAuto = null;
-        private List<string> fieldsPrimary = null;
-        private List<string> fieldsNullable = null;
+        protected string databaseName, tableName,windowsName;
+        protected IConnector databaseConnection = null;
+        protected List<string> fields = null;
+        protected List<string> fieldsAuto = null;
+        protected List<string> fieldsPrimary = null;
+        protected List<string> fieldsNullable = null;
 
         #region Load
-        private void Load()
+        protected void Load()
         {
-            this.Text = windowsName;
             lblHeader.Text = windowsName + " BẢNG";
             fields = databaseConnection.GetNameFieldsOfTable(tableName);
             fieldsAuto = databaseConnection.GetFieldsAutoIncrement(tableName);
@@ -155,8 +154,19 @@ namespace SEPFrameWork.Forms
         #region Event
         private void btn_Click(object sender, EventArgs e)
         {
-            
+            if (checkNullException()) return;
 
+            // then dosomething
+            doSomething();
+
+        }
+
+        protected abstract void doSomething();
+
+
+        // kiểm tra not null -> bắt buộc nhập
+        protected bool checkNullException()
+        {
             // kiểm tra not null -> bắt buộc nhập
             int idx = 0;
             foreach (var field in fields)
@@ -165,23 +175,22 @@ namespace SEPFrameWork.Forms
                 {
                     var name = "txt" + idx;
                     //MessageBox.Show(getDataTextBox("txt1"));
-                    var txt = getDataTextBox("txt"+idx.ToString()); // get textbox thứ i
+                    var txt = getDataTextBox("txt" + idx.ToString()); // get textbox thứ i
                     //MessageBox.Show(txt);
                     if (txt == "" && checkTextboxEnable("txt" + idx.ToString())) // textbox bắt buộc nhưng để trống (trừ trường hợp bị disable)
                     {
                         MessageBox.Show("Thuộc tính " + field + " không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        break;
+                        return true;
                     }
                 }
                 idx++;
             }
-
-            MessageBox.Show("Qua các kiểm tra null. Chưa gọi hàm thêm!");
-
+            return false;
         }
 
+
         // Kiểm tra textbox có enable không?
-        private bool checkTextboxEnable(string textboxName)
+        protected bool checkTextboxEnable(string textboxName)
         {
             foreach (Control control in this.Controls)
             {
@@ -198,7 +207,7 @@ namespace SEPFrameWork.Forms
         }
 
         // lấy nội dung của textbox khi biết tên
-        private string getDataTextBox(string textboxName) 
+        protected string getDataTextBox(string textboxName) 
         {
             foreach (Control control in this.Controls)
             {

@@ -1,6 +1,6 @@
 ﻿namespace SEPFrameWork.Forms
 {
-    partial class UpdateFrom
+    partial class UpdateForm
     {
         /// <summary>
         /// Required designer variable.
