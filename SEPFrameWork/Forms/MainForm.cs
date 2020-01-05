@@ -39,7 +39,6 @@ namespace SEPFrameWork.Forms
         #region Load
         private void MainLoad()
         {
-            dataTable = databaseConnection.ReadData(tableName);
             fields = databaseConnection.GetNameFieldsOfTable(tableName);
         }
 
@@ -47,7 +46,11 @@ namespace SEPFrameWork.Forms
         {
             // clear dữ liệu
             grvData.Rows.Clear();
+            grvData.Columns.Clear();
             grvData.Refresh();
+            // Load bảng
+            dataTable = databaseConnection.ReadData(tableName);
+
             //Load cột
             foreach (var feild in fields)
             {
