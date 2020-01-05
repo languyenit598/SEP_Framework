@@ -23,7 +23,7 @@ namespace SEPFrameWork
 
         public Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, object[] obj)
         {
-            BaseForm frm = new AddForm(dbConn, dbName, tabName, windowsName, obj);
+            BaseForm frm = new UpdateForm(dbConn, dbName, tabName, windowsName, obj);
             frm.ShowDialog();
             return frm;
         }
