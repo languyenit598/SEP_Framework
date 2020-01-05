@@ -104,9 +104,12 @@ namespace SEPFrameWork.Forms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Add clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            BaseForm frm = new AddForm(databaseConnection, databaseName, tableName, "THÊM", getCurrentRow());
             this.Hide();
-            frm.ShowDialog();
+            //BaseForm frm = new AddForm(databaseConnection, databaseName, tableName, "THÊM", getCurrentRow());
+            //frm.ShowDialog();
+            new FormAddFactory().createForm(databaseConnection, databaseName, tableName, "THÊM", getCurrentRow()); // factory method
+
+
             // Refresh
             LoadTable();
             this.Show();
@@ -115,9 +118,12 @@ namespace SEPFrameWork.Forms
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Update clicked!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            BaseForm frm = new UpdateForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", getCurrentRow());
             this.Hide();
-            frm.ShowDialog();
+            //BaseForm frm = new UpdateForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", getCurrentRow());
+            //frm.ShowDialog();
+            new FormUpdateFactory().createForm(databaseConnection, databaseName, tableName, "CẬP NHẬT", getCurrentRow()); // factory method
+
+
             // Refresh
             LoadTable();
             this.Show();

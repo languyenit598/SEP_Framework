@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SEPFrameWork.Forms;
+using System.Windows.Forms;
+using SEPFrameWork.Databases;
 
 namespace SEPFrameWork
 {
-    abstract class FactoryForm
+    public interface FactoryForm
     {
-        public abstract BaseForm creat();
+        Form createForm();
+
+        Form createForm(IConnector dbConn, string dbName, string tabName);
+        Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, Object[] obj);
     }
 }

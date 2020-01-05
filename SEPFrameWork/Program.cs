@@ -19,7 +19,8 @@ namespace SEPFrameWork
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new LoginForm());
+            //Application.Run(new LoginForm());
+            Application.Run(new FormLoginFactory().createForm()); // factory method
 
 
 
@@ -44,7 +45,7 @@ namespace SEPFrameWork
             //bool a = databaseConnection.CreateData("DEPARTMENT", oldData);
             //bool a = databaseConnection.UpdateData("DEPARTMENT", oldData, newData);
 
-          
+
             //List<Dictionary<String, String>> test4 = databaseConnection.ReadData("DEPARTMENT");
             //foreach (Dictionary<String, String> i in test4)
             //{

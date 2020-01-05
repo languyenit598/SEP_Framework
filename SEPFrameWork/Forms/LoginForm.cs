@@ -109,9 +109,10 @@ namespace SEPFrameWork.Forms
         private void btnGo_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(selNameTable);
-            var frm = new MainForm(databaseConnection, selNameDatabase, selNameTable);
             this.Hide();
-            frm.ShowDialog();
+            //var frm = new MainForm(databaseConnection, selNameDatabase, selNameTable);
+            //frm.ShowDialog();
+            new FormMainFactory().createForm(databaseConnection, selNameDatabase, selNameTable); // factory method
             this.Show();
         }
 

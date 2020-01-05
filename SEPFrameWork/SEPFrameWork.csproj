@@ -66,11 +66,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddFormFactory.cs" />
+    <Compile Include="FormAddFactory.cs" />
     <Compile Include="Databases\IConnector.cs" />
     <Compile Include="Databases\MySQLConnector.cs" />
     <Compile Include="Databases\SQLServerConnection.cs" />
     <Compile Include="FactoryForm.cs" />
+    <Compile Include="FormLoginFactory.cs" />
+    <Compile Include="FormMainFactory.cs" />
     <Compile Include="Forms\AddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +103,7 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUpdateFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\BaseForm.resx">
