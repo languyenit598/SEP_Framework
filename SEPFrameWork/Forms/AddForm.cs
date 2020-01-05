@@ -48,12 +48,13 @@ namespace SEPFrameWork.Forms
                 obj = new Object[sz]; // bỏ qua cột auto
                 // Lấy từ txt0.Text
             }
-            int idxObj = 0;
 
-            foreach (var field in base.fields)
+            //int idxObj = 0;
+            
+            for(int i=0; i<obj.Length;i++)
             {
-                obj[idxObj] = getDataTextBox("txt" + idx.ToString()); // object[0]=txt0.Text ......
-                idxObj++;
+                obj[i] = getDataTextBox("txt" + idx.ToString()); // object[0]=txt0.Text ......
+                //i++;
                 idx++;
             }
             if (base.databaseConnection.CreateData(base.tableName, obj))

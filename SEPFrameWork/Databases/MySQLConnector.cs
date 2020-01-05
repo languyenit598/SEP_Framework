@@ -48,11 +48,17 @@ namespace SEPFrameWork.Databases
             MySqlConnection conn = null;
             MySqlCommand cmd;
 
-
             String sqlQuery;
             //tạo list các fields để insert dữ liệu
             List<string> listFields = this.GetNameFieldsOfTable(tableName);
-
+            List<string> listAutoIncrement = this.GetFieldsAutoIncrement(tableName);
+            foreach(var e in listAutoIncrement)
+            {
+                if (listFields.Contains(e))
+                {
+                    listFields.Remove(e);
+                }
+            }
             // sau tên table sẽ là các trường dữ liệu để chèn vào
             StringBuilder fieldsString = new StringBuilder();
 
@@ -322,9 +328,11 @@ namespace SEPFrameWork.Databases
                 conn.Open();
                 cmd = conn.CreateCommand();
 
-                sqlQuery = "SELECT column_name as 'Column Name' FROM information_schema.columns WHERE table_name =  @tableName";
+                sqlQuery = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='"+database+"' AND `TABLE_NAME`='"+tableName+"' ";
+                // sqlQuery = "SELECT column_name as 'Column Name' FROM information_schema.columns WHERE table_name =  @tableName";
                 cmd.CommandText = sqlQuery;
-                cmd.Parameters.AddWithValue("@tableName", tableName);
+                //cmd.Parameters.AddWithValue("@database", this.database);
+                //cmd.Parameters.AddWithValue("@tableName", tableName);
 
                 using (reader = cmd.ExecuteReader())
                 {

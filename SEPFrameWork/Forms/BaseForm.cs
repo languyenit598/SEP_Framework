@@ -18,7 +18,7 @@ namespace SEPFrameWork.Forms
             InitializeComponent();
         }
 
-        public BaseForm(IConnector dbConn, string dbName, string tabName,string windowsName, Object[] obj)
+        public BaseForm(IConnector dbConn, string dbName, string tabName, string windowsName, Object[] obj)
         {
             InitializeComponent();
             databaseConnection = dbConn;
@@ -30,7 +30,7 @@ namespace SEPFrameWork.Forms
             Load();
         }
 
-        protected string databaseName, tableName,windowsName;
+        protected string databaseName, tableName, windowsName;
         protected IConnector databaseConnection = null;
         protected List<string> fields = null;
         protected List<string> fieldsAuto = null;
@@ -61,8 +61,8 @@ namespace SEPFrameWork.Forms
                 lbl.Text = field;
                 lbl.Size = new Size(180, 30);
                 lbl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                lbl.Location = new System.Drawing.Point(x , y + idx*50);
-                lbl.Name = "lbl"+idx;
+                lbl.Location = new System.Drawing.Point(x, y + idx * 50);
+                lbl.Name = "lbl" + idx;
                 this.Controls.Add(lbl);
 
                 // Add textbox
@@ -78,9 +78,12 @@ namespace SEPFrameWork.Forms
                 this.Controls.Add(txt);
 
                 // check auto increment
+                bool flag = false; // signal auto key 
                 if (fieldsAuto.Contains(field, StringComparer.OrdinalIgnoreCase))
                 {
+
                     txt.Enabled = false;
+                    flag = true;
                     txt.ForeColor = Color.Red;
                     PictureBox pbAuto = new PictureBox();
                     pbAuto.Size = new Size(25, 25);
@@ -93,10 +96,11 @@ namespace SEPFrameWork.Forms
                 }
 
                 // check primary key
-                if (fieldsPrimary.Contains(field,StringComparer.OrdinalIgnoreCase))
+                if (fieldsPrimary.Contains(field, StringComparer.OrdinalIgnoreCase))
                 {
                     lbl.ForeColor = Color.Red;
-                    txt.Enabled = true;
+                    if (!flag)
+                        txt.Enabled = true;
                     txt.ForeColor = Color.Red;
                     PictureBox pbPrimary = new PictureBox();
                     pbPrimary.Size = new Size(25, 25);
@@ -110,7 +114,7 @@ namespace SEPFrameWork.Forms
 
                 // check nullable
                 CheckBox chk = new CheckBox();
-                chk.Size = new Size(25,25);
+                chk.Size = new Size(25, 25);
                 chk.Location = new System.Drawing.Point(x + 560, y + idx * 50);
                 chk.Name = "chk" + idx;
                 chk.Enabled = false;
@@ -134,7 +138,7 @@ namespace SEPFrameWork.Forms
             btn.BackColor = System.Drawing.SystemColors.HotTrack;
             btn.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btn.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            btn.Location = new System.Drawing.Point(x + 190 , y + idx * 50);
+            btn.Location = new System.Drawing.Point(x + 190, y + idx * 50);
             btn.Name = "btn";
             btn.Size = new System.Drawing.Size(130, 45);
             btn.Text = windowsName;
@@ -214,13 +218,13 @@ namespace SEPFrameWork.Forms
                         return (control as TextBox).Enabled;
                     }
                 }
-                    
+
             }
             return true;
         }
 
         // lấy nội dung của textbox khi biết tên
-        protected string getDataTextBox(string textboxName) 
+        protected string getDataTextBox(string textboxName)
         {
             foreach (Control control in this.Controls)
             {

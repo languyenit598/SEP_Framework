@@ -37,17 +37,18 @@ namespace SEPFrameWork.Forms
             // code here           
             int idx = 0;
             int sz = base.fields.Count;
-            Object[] newdata = null;
-            if (base.fieldsAuto.Count > 0) // có 1 dòng tự tăng (auto increment) => bỏ qua dòng đó k truyền
-            {
-                newdata = new Object[sz - 1]; // bỏ qua cột auto
-                idx++; // lấy từ txt1.Text
-            }
-            else
-            {
-                newdata = new Object[sz]; // bỏ qua cột auto
-                // Lấy từ txt0.Text
-            }
+            // Object[] newdata = null;
+            //if (base.fieldsAuto.Count > 0) // có 1 dòng tự tăng (auto increment) => bỏ qua dòng đó k truyền
+            //{
+            //    newdata = new Object[sz - 1]; // bỏ qua cột auto
+            //    idx++; // lấy từ txt1.Text
+            //}
+            //else
+            //{
+            //    newdata = new Object[sz]; // bỏ qua cột auto
+            //    // Lấy từ txt0.Text
+            //}
+            Object[] newdata = new Object[sz];
             int idxObj = 0;
 
             foreach (var field in base.fields)
