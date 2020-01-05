@@ -34,31 +34,56 @@ namespace SEPFrameWork.Forms
 
         protected override void doSomething()
         {
-            // code here
+            // code here           
             int idx = 0;
             int sz = base.fields.Count;
-            Object[] obj = null;
+            Object[] newdata = null;
             if (base.fieldsAuto.Count > 0) // có 1 dòng tự tăng (auto increment) => bỏ qua dòng đó k truyền
             {
-                obj = new Object[sz - 1]; // bỏ qua cột auto
+                newdata = new Object[sz - 1]; // bỏ qua cột auto
                 idx++; // lấy từ txt1.Text
             }
             else
             {
-                obj = new Object[sz]; // bỏ qua cột auto
+                newdata = new Object[sz]; // bỏ qua cột auto
                 // Lấy từ txt0.Text
             }
             int idxObj = 0;
 
             foreach (var field in base.fields)
-            {
-                obj[idxObj] = getDataTextBox("txt" + idx.ToString()); // object[0]=txt0.Text ......
+            {               
+                var checkdata = base.databaseConnection.GetTypeofFields(base.tableName, field).Name;
+                if (checkdata.Equals("Int32")){
+                    newdata[idxObj] = Int32.Parse(getDataTextBox("txt" + idx.ToString())); // object[0]=txt0.Text ......
+                }
+                else if (checkdata.Equals("String"))
+                {
+                    newdata[idxObj] = getDataTextBox("txt" + idx.ToString());
+                }
+                else if (checkdata.Equals("DateTime"))
+                {
+                    newdata[idxObj] =DateTime.Parse(getDataTextBox("txt" + idx.ToString()));
+                }
+                else if(checkdata.Equals("Boolean"))
+                {
+                    newdata[idxObj] = Boolean.Parse(getDataTextBox("txt" + idx.ToString()));
+                }
+                else if (checkdata.Equals("Double"))
+                {
+                    newdata[idxObj] = Double.Parse(getDataTextBox("txt" + idx.ToString()));
+                }
+                else if (checkdata.Equals("Byte[]"))
+                {
+                    newdata[idxObj] = Encoding.ASCII.GetBytes(getDataTextBox("txt" + idx.ToString()));
+                }
                 idxObj++;
                 idx++;
             }
-            base.databaseConnection.UpdateData(base.tableName, base.obj, this.obj);
-            MessageBox.Show("Cập nhật dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            if (base.databaseConnection.UpdateData(base.tableName, base.obj, newdata))
+            {
+                MessageBox.Show("Cập nhật dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+
     }
 }

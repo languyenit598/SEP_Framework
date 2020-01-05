@@ -187,6 +187,16 @@ namespace SEPFrameWork.Databases
                 return false;
             }
 
+            //for (int i = 0; i < listFields.Count; i++)
+            //{
+            //    paramsUpdateSET.Append(listFields[i]).Append(" = ").Append("@paramset").Append(i);
+            //    paramsUpdateWHERE.Append(listFields[i]).Append(" ").Append("@equals").Append(i).Append(" ").Append("@paramwhere").Append(i);
+            //    if (i < listFields.Count - 1)
+            //    {
+            //        paramsUpdateSET.Append(", ");
+            //        paramsUpdateWHERE.Append(" AND ");
+            //    }
+            //}
             for (int i = 0; i < listFields.Count; i++)
             {
                 paramsUpdateSET.Append(listFields[i]).Append(" = ").Append("@paramset").Append(i);
@@ -214,8 +224,19 @@ namespace SEPFrameWork.Databases
                 {
                     cmd.Parameters.AddWithValue("@paramset" + i, newData[i]);
                     cmd.Parameters.AddWithValue("@paramwhere" + i, oldData[i]);
+                    //if (oldData[i].ToString() != "")
+                    //{
+                    //    cmd.Parameters.AddWithValue("@equals" + i, "=");
+                    //    cmd.Parameters.AddWithValue("@paramwhere" + i, oldData[i]);
+                    //}
+                    //else
+                    //{
+                    //    cmd.Parameters.AddWithValue("@equals" + i, "IS NULL");
+                    //    cmd.Parameters.AddWithValue("@paramwhere" + i, "");
+                    //}
+
                 }
-               
+
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -259,7 +280,7 @@ namespace SEPFrameWork.Databases
                 conn.Open();
                 cmd = conn.CreateCommand();
 
-                sqlQuery = "DELETE FROM " + tableName +" WHERE "+ paramDelete;
+                sqlQuery = "DELETE FROM " + tableName + " WHERE " + paramDelete;
                 cmd.CommandText = sqlQuery;
 
                 for (int i = 0; i < data.Length; i++)

@@ -18,7 +18,7 @@ namespace SEPFrameWork.Forms
             InitializeComponent();
         }
 
-        public AddForm(IConnector dbConn, string dbName, string tabName, string windowsName,Object[] obj):base(dbConn, dbName, tabName, windowsName,obj)
+        public AddForm(IConnector dbConn, string dbName, string tabName, string windowsName, Object[] obj) : base(dbConn, dbName, tabName, windowsName, obj)
         {
             InitializeComponent();
             base.databaseConnection = dbConn;
@@ -38,7 +38,7 @@ namespace SEPFrameWork.Forms
             int idx = 0;
             int sz = base.fields.Count;
             Object[] obj = null;
-            if (base.fieldsAuto.Count>0) // có 1 dòng tự tăng (auto increment) => bỏ qua dòng đó k truyền
+            if (base.fieldsAuto.Count > 0) // có 1 dòng tự tăng (auto increment) => bỏ qua dòng đó k truyền
             {
                 obj = new Object[sz - 1]; // bỏ qua cột auto
                 idx++; // lấy từ txt1.Text
@@ -56,8 +56,11 @@ namespace SEPFrameWork.Forms
                 idxObj++;
                 idx++;
             }
-            base.databaseConnection.CreateData(base.tableName, obj);
-            MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (base.databaseConnection.CreateData(base.tableName, obj))
+            {
+                MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }
