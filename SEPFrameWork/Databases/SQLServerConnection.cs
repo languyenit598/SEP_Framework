@@ -31,7 +31,7 @@ namespace SEPFrameWork.Databases
             string connetionString;
             if (this.username != null && this.password != null)
             {
-                connetionString = @"Data Source=" + this.dataSource + ";Initial Catalog=" + this.databaseName + ";User ID=" + this.username + ";Password=" + this.password;
+                connetionString = @"Data Source=" + this.dataSource + ";Initial Catalog=" + this.databaseName + ";User ID=" + this.username + ";Password=" + this.password + "; Integrated Security = True";
             }
             else // username, pass đều null
             {
@@ -275,7 +275,7 @@ namespace SEPFrameWork.Databases
                     return true;
                 }
                 return false;
-                
+
             }
             catch (Exception ex)
             {

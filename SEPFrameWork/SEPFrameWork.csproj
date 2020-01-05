@@ -99,9 +99,6 @@
     <Compile Include="Forms\UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Membership\Membership.cs" />
-    <Compile Include="Membership\Role.cs" />
-    <Compile Include="Membership\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\BaseForm.resx">
