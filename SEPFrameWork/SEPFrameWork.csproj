@@ -66,9 +66,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFormFactory.cs" />
     <Compile Include="Databases\IConnector.cs" />
     <Compile Include="Databases\MySQLConnector.cs" />
     <Compile Include="Databases\SQLServerConnection.cs" />
+    <Compile Include="FactoryForm.cs" />
     <Compile Include="Forms\AddForm.cs">
       <SubType>Form</SubType>
     </Compile>
