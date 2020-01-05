@@ -108,7 +108,7 @@ namespace SEPFrameWork.Forms
                     Bitmap pic2 = new Bitmap(Application.StartupPath + "\\Icon\\primaryKey.png");
                     pbPrimary.Image = pic2;
                     pbPrimary.SizeMode = PictureBoxSizeMode.StretchImage;
-                    tt.SetToolTip(pbPrimary, "Thuộc tính primary, không thể sửa giá trị");
+                    tt.SetToolTip(pbPrimary, "Thuộc tính primary");
                     this.Controls.Add(pbPrimary);
                 }
 
