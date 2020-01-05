@@ -186,7 +186,13 @@ namespace SEPFrameWork.Forms
             foreach (Control control in this.Controls)
             {
                 if (control is TextBox)
-                    return (control as TextBox).Enabled;
+                {
+                    if ((control as TextBox).Name == textboxName)
+                    {
+                        return (control as TextBox).Enabled;
+                    }
+                }
+                    
             }
             return true;
         }
