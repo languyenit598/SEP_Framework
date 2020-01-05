@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SEPFrameWork.Membership
+namespace SEPFrameWork.Databases
 {
-    class Role
+    class DatabaseConnection
     {
     }
 }
