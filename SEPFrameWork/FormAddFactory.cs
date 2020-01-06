@@ -9,6 +9,31 @@ using SEPFrameWork.Databases;
 
 namespace SEPFrameWork
 {
+    //public class FormAddFactoryBuilder
+    //{
+    //    IConnector connector;
+    //    string databaseName;
+    //    string tableName;
+    //    string windowName;
+    //    Object[] objs;
+
+    //    public FormAddFactoryBuilder SetConnectot(IConnector conn)
+    //    {
+    //        this.connector = conn;
+    //        return this;
+    //    }
+
+    //   // FormAddFactoryBuilder()
+    //   public AddForm build()
+    //    {
+    //        return new AddForm(connector, databaseName, tableName, windowName, objs);
+            
+    //    }
+       
+    //}
+
+
+
     class FormAddFactory : FactoryForm
     {
         //public Form createForm()
@@ -26,6 +51,12 @@ namespace SEPFrameWork
             BaseForm frm = new AddForm(dbConn, dbName, tabName, windowsName, obj);
             frm.ShowDialog();
             return frm;
+
+            //FormAddFactoryBuilder builder = new FormAddFactoryBuilder();
+            //builder.SetConnectot(dbConn);
+            //BaseForm frm = builder.build();
+            //frm.ShowDialog();
+            //return frm;
         }
 
         
