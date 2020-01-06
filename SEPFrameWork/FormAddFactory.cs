@@ -11,15 +11,15 @@ namespace SEPFrameWork
 {
     class FormAddFactory : FactoryForm
     {
-        public Form createForm()
-        {
-            throw new NotImplementedException();
-        }
+        //public Form createForm()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Form createForm(IConnector dbConn, string dbName, string tabName)
-        {
-            throw new NotImplementedException();
-        }
+        //public Form createForm(IConnector dbConn, string dbName, string tabName)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, object[] obj)
         {

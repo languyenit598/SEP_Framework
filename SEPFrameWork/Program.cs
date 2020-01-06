@@ -20,7 +20,7 @@ namespace SEPFrameWork
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             //Application.Run(new LoginForm());
-            Application.Run(new FormLoginFactory().createForm()); // factory method
+            Application.Run(new FormLoginFactory().createForm(null,null,null,null,null)); // factory method
 
 
 

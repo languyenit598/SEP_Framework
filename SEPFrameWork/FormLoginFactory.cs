@@ -11,19 +11,23 @@ namespace SEPFrameWork
 {
     class FormLoginFactory : FactoryForm
     {
-        public Form createForm()
-        {
-            return new LoginForm();
-        }
+        //public Form createForm()
+        //{
+        //    return new LoginForm();
+        //}
 
-        public Form createForm(IConnector dbConn, string dbName, string tabName)
-        {
-            throw new NotImplementedException();
-        }
+        //public Form createForm(IConnector dbConn, string dbName, string tabName)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
+        //public Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, object[] obj)
+        //{
+        //    throw new NotImplementedException();
+        //}
         public Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, object[] obj)
         {
-            throw new NotImplementedException();
+            return new LoginForm();
         }
     }
 }

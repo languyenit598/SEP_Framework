@@ -1,3 +1,7 @@
+C:\git\SEP_Framework\Demo\obj\Debug\Demo.csprojAssemblyReference.cache
+C:\git\SEP_Framework\Demo\obj\Debug\Demo.Properties.Resources.resources
+C:\git\SEP_Framework\Demo\obj\Debug\Demo.csproj.GenerateResource.cache
+C:\git\SEP_Framework\Demo\obj\Debug\Demo.csproj.CoreCompileInputs.cache
 C:\git\SEP_Framework\Demo\bin\Debug\Icon\autoKey.png
 C:\git\SEP_Framework\Demo\bin\Debug\Icon\primaryKey.png
 C:\git\SEP_Framework\Demo\bin\Debug\Demo.exe.config
@@ -12,10 +16,6 @@ C:\git\SEP_Framework\Demo\bin\Debug\IoC_Dll.pdb
 C:\git\SEP_Framework\Demo\bin\Debug\MySql.Data.xml
 C:\git\SEP_Framework\Demo\bin\Debug\Google.Protobuf.xml
 C:\git\SEP_Framework\Demo\bin\Debug\Renci.SshNet.xml
-C:\git\SEP_Framework\Demo\obj\Debug\Demo.csprojAssemblyReference.cache
-C:\git\SEP_Framework\Demo\obj\Debug\Demo.Properties.Resources.resources
-C:\git\SEP_Framework\Demo\obj\Debug\Demo.csproj.GenerateResource.cache
-C:\git\SEP_Framework\Demo\obj\Debug\Demo.csproj.CoreCompileInputs.cache
 C:\git\SEP_Framework\Demo\obj\Debug\Demo.csproj.CopyComplete
 C:\git\SEP_Framework\Demo\obj\Debug\Demo.exe
 C:\git\SEP_Framework\Demo\obj\Debug\Demo.pdb

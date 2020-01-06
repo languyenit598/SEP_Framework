@@ -112,7 +112,7 @@ namespace SEPFrameWork.Forms
             this.Hide();
             //var frm = new MainForm(databaseConnection, selNameDatabase, selNameTable);
             //frm.ShowDialog();
-            new FormMainFactory().createForm(databaseConnection, selNameDatabase, selNameTable); // factory method
+            new FormMainFactory().createForm(databaseConnection, selNameDatabase, selNameTable,null,null); // factory method
             this.Show();
         }
 

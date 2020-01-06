@@ -11,21 +11,27 @@ namespace SEPFrameWork
 {
     class FormMainFactory : FactoryForm
     {
-        public Form createForm()
-        {
-            throw new NotImplementedException();
-        }
+        //public Form createForm()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Form createForm(IConnector dbConn, string dbName, string tabName)
+        //public Form createForm(IConnector dbConn, string dbName, string tabName)
+        //{
+        //    MainForm frm = new MainForm(dbConn, dbName, tabName);
+        //    frm.ShowDialog();
+        //    return frm;
+        //}
+
+        //public Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, object[] obj)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        public Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, object[] obj)
         {
             MainForm frm = new MainForm(dbConn, dbName, tabName);
             frm.ShowDialog();
             return frm;
-        }
-
-        public Form createForm(IConnector dbConn, string dbName, string tabName, string windowsName, object[] obj)
-        {
-            throw new NotImplementedException();
         }
     }
 }
