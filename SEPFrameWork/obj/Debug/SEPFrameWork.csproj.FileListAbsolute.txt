@@ -40,7 +40,6 @@ C:\git\SEP_Framework\SEPFrameWork\bin\Debug\Google.Protobuf.dll
 C:\git\SEP_Framework\SEPFrameWork\bin\Debug\Google.Protobuf.xml
 C:\git\SEP_Framework\SEPFrameWork\bin\Debug\MySql.Data.xml
 C:\git\SEP_Framework\SEPFrameWork\bin\Debug\Renci.SshNet.xml
-C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.csprojAssemblyReference.cache
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.BaseForm.resources
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.MainForm.resources
 C:\git\SEP_Framework\SEPFrameWork\obj\Debug\SEPFrameWork.Forms.LoginForm.resources
